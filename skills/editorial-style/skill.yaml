@@ -1,0 +1,21 @@
+schema: 1
+name: editorial-style
+version: 0.1.1
+title: "Editorial Style"
+description: "Редакторский слой для любых содержательных русскоязычных деловых, клиентских и внутренних текстов. Используй при создании, правке или финальной проверке КП, писем, отчётов, презентационных тезисов, описаний проектов, методических материалов и других текстов, чтобы получить ясный деловой русский язык без лишних англицизмов, слешей, плюсов, стрелок, риторических противопоставлений, рубленых фраз, канцелярита и нейрослопа."
+compatible_agents:
+  - claude
+  - codex
+  - cursor
+  - opencode
+  - openclaw
+  - hermes
+requires:
+  mcp: []
+  permissions:
+    filesystem: read
+resources:
+  skill: SKILL.md
+  references: false
+  scripts: false
+  assets: false

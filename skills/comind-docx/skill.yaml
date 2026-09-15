@@ -1,0 +1,21 @@
+schema: 1
+name: comind-docx
+version: 0.1.0
+title: "coMind DOCX"
+description: "Создание, редактирование и проверка Word-документов в стиле coMind. Используй для любых клиентских или внутренних .docx в фирменном шаблоне coMind, включая КП, предложения, отчеты, технические задания, концепции, презентационные документы, а также когда нужно проверить верстку, списки, таблицы, титульный лист, оглавление, страницу \"О компании coMind\" или деловой русский стиль."
+compatible_agents:
+  - claude
+  - codex
+  - cursor
+  - opencode
+  - openclaw
+  - hermes
+requires:
+  mcp: []
+  permissions:
+    filesystem: read
+resources:
+  skill: SKILL.md
+  references: true
+  scripts: true
+  assets: false

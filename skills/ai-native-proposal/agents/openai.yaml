@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI-Native Proposal"
+  short_description: "Собирает клиентские AI-Native предложения и концепции."
+  default_prompt: "Собери AI-Native предложение для клиента по материалам, прототипу или ТЗ."

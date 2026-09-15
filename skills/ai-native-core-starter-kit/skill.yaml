@@ -1,0 +1,21 @@
+schema: 1
+name: ai-native-core-starter-kit
+version: 0.1.1
+title: "ai-native-core-starter-kit"
+description: "Навигатор по AI-Native Core Starter Kit от первичного intake и operating model до пилота, baseline и регулярного управленческого review."
+compatible_agents:
+  - claude
+  - codex
+  - cursor
+  - opencode
+  - openclaw
+  - hermes
+requires:
+  mcp: []
+  permissions:
+    filesystem: read
+resources:
+  skill: SKILL.md
+  references: true
+  scripts: false
+  assets: false
