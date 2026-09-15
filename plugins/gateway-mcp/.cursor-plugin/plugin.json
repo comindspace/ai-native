@@ -1,0 +1,30 @@
+{
+  "name": "gateway-mcp",
+  "displayName": "Gateway MCP",
+  "version": "0.1.10",
+  "description": "Single GatewayMCP boundary for private MCP servers, company context, and corporate memory.",
+  "author": {
+    "name": "coMind",
+    "email": "team@comind.space"
+  },
+  "homepage": "https://comind.space",
+  "repository": "https://github.com/comindspace/gateway-mcp",
+  "license": "UNLICENSED",
+  "keywords": [
+    "cursor",
+    "mcp",
+    "gateway",
+    "agents",
+    "skills"
+  ],
+  "category": "productivity",
+  "tags": [
+    "mcp",
+    "gateway",
+    "agent-skills"
+  ],
+  "mcpServers": "./cursor.mcp.json",
+  "metadata": {
+    "platformRelease": "2026.09.11"
+  }
+}

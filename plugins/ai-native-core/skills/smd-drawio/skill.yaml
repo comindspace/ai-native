@@ -1,0 +1,21 @@
+schema: 1
+name: smd-drawio
+version: 0.1.0
+title: "smd-drawio"
+description: "Схематизация по мотивам СМД-методологии в формате draw.io XML. Используй когда пользователь просит нарисовать схему ситуации, распредметить позицию, показать систему разделения труда, визуализировать проблему, показать выход в рефлексию, или извлечь схему из текста/фреймворка."
+compatible_agents:
+  - claude
+  - codex
+  - cursor
+  - opencode
+  - openclaw
+  - hermes
+requires:
+  mcp: []
+  permissions:
+    filesystem: read
+resources:
+  skill: SKILL.md
+  references: true
+  scripts: false
+  assets: false

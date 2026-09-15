@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests
+        run: python -m unittest discover -s agent-platform/tests
+      - name: Validate skills
+        run: python agent-platform/build_agent_plugins.py validate-skills
+      - name: Inventory
+        run: python agent-platform/build_agent_plugins.py inventory
+      - name: Build and verify generated packs
+        run: |
+          python agent-platform/build_agent_plugins.py build-plugins --clean
+          python agent-platform/build_agent_plugins.py validate-generated

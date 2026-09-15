@@ -1,0 +1,21 @@
+schema: 1
+name: func-arch-drawio
+version: 0.1.0
+title: "func-arch-drawio"
+description: "Генерация, валидация и рефакторинг диаграмм функциональной архитектуры в формате draw.io XML. Используй когда пользователь просит нарисовать архитектуру системы, показать взаимодействие систем и ролей, или проверить/улучшить существующую архитектурную диаграмму."
+compatible_agents:
+  - claude
+  - codex
+  - cursor
+  - opencode
+  - openclaw
+  - hermes
+requires:
+  mcp: []
+  permissions:
+    filesystem: read
+resources:
+  skill: SKILL.md
+  references: true
+  scripts: false
+  assets: false

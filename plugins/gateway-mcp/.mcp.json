@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "gateway": {
+      "type": "http",
+      "url": "${user_config.gateway_mcp_url}",
+      "timeout": 60000
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "gateway": {
+      "type": "http",
+      "url": "https://gateway.example.com/mcp",
+      "timeout": 60000
+    }
+  }
+}
