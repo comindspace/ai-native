@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "gateway": {
+      "url": "https://gateway.example.com/mcp"
+    }
+  }
+}

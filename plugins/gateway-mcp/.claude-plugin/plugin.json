@@ -1,0 +1,23 @@
+{
+  "name": "gateway-mcp",
+  "version": "0.1.10",
+  "description": "Single GatewayMCP boundary for private MCP servers, company context, and corporate memory.",
+  "author": {
+    "name": "coMind",
+    "email": "team@comind.space",
+    "url": "https://comind.space"
+  },
+  "metadata": {
+    "platformRelease": "2026.09.11"
+  },
+  "mcpServers": "./.mcp.json",
+  "userConfig": {
+    "gateway_mcp_url": {
+      "type": "string",
+      "title": "GatewayMCP URL",
+      "description": "Remote GatewayMCP HTTP endpoint. Production: https://gateway.example.com/mcp",
+      "default": "https://gateway.example.com/mcp",
+      "required": true
+    }
+  }
+}

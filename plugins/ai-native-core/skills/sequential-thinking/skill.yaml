@@ -1,0 +1,21 @@
+schema: 1
+name: sequential-thinking
+version: 0.1.0
+title: "sequential-thinking"
+description: "Use when complex problems require systematic step-by-step reasoning with ability to revise thoughts, branch into alternative approaches, or dynamically adjust scope. Ideal for multi-stage analysis, design planning, problem decomposition, or tasks with initially unclear scope."
+compatible_agents:
+  - claude
+  - codex
+  - cursor
+  - opencode
+  - openclaw
+  - hermes
+requires:
+  mcp: []
+  permissions:
+    filesystem: read
+resources:
+  skill: SKILL.md
+  references: true
+  scripts: false
+  assets: false

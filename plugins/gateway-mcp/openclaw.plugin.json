@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "name": "gateway-mcp",
+  "version": "0.1.10",
+  "description": "Single GatewayMCP boundary for private MCP servers, company context, and corporate memory.",
+  "mcpServers": "./mcp.json",
+  "configuration": {
+    "GATEWAY_MCP_URL": {
+      "type": "string",
+      "description": "Remote GatewayMCP HTTP endpoint. Production: https://gateway.example.com/mcp",
+      "default": "https://gateway.example.com/mcp",
+      "required": true
+    },
+    "GATEWAY_MCP_TOKEN": {
+      "type": "secret",
+      "description": "Fallback Gateway bearer token for agents without MCP OAuth support.",
+      "required": true
+    }
+  },
+  "metadata": {
+    "openclaw": {
+      "category": "Productivity"
+    },
+    "platformRelease": "2026.09.11"
+  }
+}

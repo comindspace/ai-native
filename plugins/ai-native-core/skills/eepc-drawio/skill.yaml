@@ -1,0 +1,21 @@
+schema: 1
+name: eepc-drawio
+version: 0.1.0
+title: "eepc-drawio"
+description: "Генерация, валидация и рефакторинг eEPC-диаграмм в формате draw.io XML. Используй когда пользователь просит построить бизнес-процесс в нотации eEPC, проверить существующую диаграмму или улучшить её."
+compatible_agents:
+  - claude
+  - codex
+  - cursor
+  - opencode
+  - openclaw
+  - hermes
+requires:
+  mcp: []
+  permissions:
+    filesystem: read
+resources:
+  skill: SKILL.md
+  references: true
+  scripts: false
+  assets: false

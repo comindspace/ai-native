@@ -1,0 +1,29 @@
+{
+  "name": "ai-native-core",
+  "displayName": "AI-Native Core",
+  "version": "0.1.4",
+  "description": "AI-Native reference skills: operating model starter kit, proposal shaping, architecture, editorial style, diagramming methods, and document templates. Installable packs for Claude Code, Codex, Cursor, OpenCode, OpenClaw, and Hermes.",
+  "author": {
+    "name": "coMind",
+    "email": "team@comind.space"
+  },
+  "homepage": "https://comind.space",
+  "repository": "https://github.com/comindspace/ai-native",
+  "license": "UNLICENSED",
+  "keywords": [
+    "agents",
+    "skills",
+    "ai-native",
+    "ai"
+  ],
+  "category": "ai",
+  "tags": [
+    "ai",
+    "skills",
+    "agent-skills"
+  ],
+  "skills": "./skills/",
+  "metadata": {
+    "platformRelease": "2026.09.11"
+  }
+}

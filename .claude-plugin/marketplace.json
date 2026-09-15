@@ -1,0 +1,23 @@
+{
+  "name": "company-agent-skills",
+  "owner": {
+    "name": "coMind"
+  },
+  "platformRelease": "2026.09.11",
+  "plugins": [
+    {
+      "name": "ai-native-core",
+      "source": "./plugins/ai-native-core",
+      "description": "AI-Native reference skills: operating model starter kit, proposal shaping, architecture, editorial style, diagramming methods, and document templates. Installable packs for Claude Code, Codex, Cursor, OpenCode, OpenClaw, and Hermes.",
+      "version": "0.1.4",
+      "platformRelease": "2026.09.11"
+    },
+    {
+      "name": "gateway-mcp",
+      "source": "./plugins/gateway-mcp",
+      "description": "Single GatewayMCP boundary for private MCP servers, company context, and corporate memory.",
+      "version": "0.1.10",
+      "platformRelease": "2026.09.11"
+    }
+  ]
+}

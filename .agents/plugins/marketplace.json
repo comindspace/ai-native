@@ -1,0 +1,33 @@
+{
+  "name": "company-agent-skills",
+  "platformRelease": "2026.09.11",
+  "interface": {
+    "displayName": "Company Agent Skills"
+  },
+  "plugins": [
+    {
+      "name": "ai-native-core",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ai-native-core"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "AI"
+    },
+    {
+      "name": "gateway-mcp",
+      "source": {
+        "source": "local",
+        "path": "./plugins/gateway-mcp"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
