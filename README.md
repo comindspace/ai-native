@@ -3,7 +3,7 @@
 [![CI](https://github.com/comindspace/ai-native/actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
-A portable skill system for AI coding and operational assistants. Skills are executable instructions: how to do a piece of work according to your company's rules. They live in a repository, are versioned, reviewed, and packed into installable plugin packs for different agents — Claude Code, Codex, Cursor, OpenCode, OpenClaw, Hermes.
+A portable skill system for AI coding and operational assistants. Skills are executable instructions: how to do a piece of work according to your company's rules. They live in a repository, are versioned, reviewed, and packed into installable plugin packs for different agents — Claude Code, Codex, Cursor, OpenCode, OpenClaw, Hermes, ZCode.
 
 This repository contains the AI-Native reference set: methodology skills for running company operations with assistants, plus the build tool that turns a canonical `skills/` tree into installable packs.
 
@@ -47,7 +47,11 @@ python agent-platform/build_agent_plugins.py build-plugins --clean
 python agent-platform/build_agent_plugins.py validate-generated
 ```
 
-Targets: Claude Code (`.claude-plugin`), Codex (`.codex-plugin` + marketplace), Cursor (`.cursor-plugin`), OpenClaw (`openclaw.plugin.json`), Hermes (`plugin.yaml`), OpenCode (portable tree).
+Targets: Claude Code (`.claude-plugin`), Codex (`.codex-plugin` + marketplace), Cursor (`.cursor-plugin`), OpenClaw (`openclaw.plugin.json`), Hermes (`plugin.yaml`), OpenCode and ZCode (portable tree; ZCode also reads the `.zcode-plugin/` marketplace at the repository root).
+
+## Installing for ZCode
+
+ZCode consumes Claude-style plugin marketplaces. Add this repository as a marketplace (it ships `.zcode-plugin/marketplace.json`) and install the `ai-native-core` pack, or copy the skill directories from `skills/` into your `.zcode/skills/`. The GatewayMCP server is not wired by the pack: connect it through ZCode's own MCP settings.
 
 ## Where GatewayMCP fits
 

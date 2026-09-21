@@ -24,7 +24,7 @@ REQUIRED_MANIFEST_KEYS = {
     "requires",
     "resources",
 }
-SUPPORTED_AGENTS = {"claude", "codex", "cursor", "opencode", "openclaw", "hermes"}
+SUPPORTED_AGENTS = {"claude", "codex", "cursor", "opencode", "openclaw", "hermes", "zcode"}
 NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 VERSION_PATTERN = re.compile(r"^\d+\.\d+\.\d+$")
 

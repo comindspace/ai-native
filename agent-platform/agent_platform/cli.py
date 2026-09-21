@@ -39,6 +39,7 @@ def build_parser() -> argparse.ArgumentParser:
             "build-opencode",
             "build-openclaw",
             "build-hermes",
+            "build-zcode",
             "build-all",
             "validate-generated",
             "validate-skills",
@@ -87,6 +88,8 @@ def run_command(args: argparse.Namespace) -> tuple[object, int]:
         return build_portable("openclaw", source, repo_path(args.output), clean=args.clean), 0
     if args.command == "build-hermes":
         return build_portable("hermes", source, repo_path(args.output), clean=args.clean), 0
+    if args.command == "build-zcode":
+        return build_portable("zcode", source, repo_path(args.output), clean=args.clean), 0
     if args.command == "build-all":
         output = repo_path(args.output)
         return [
@@ -96,6 +99,7 @@ def run_command(args: argparse.Namespace) -> tuple[object, int]:
             build_portable("opencode", source, output, clean=args.clean),
             build_portable("openclaw", source, output, clean=args.clean),
             build_portable("hermes", source, output, clean=args.clean),
+            build_portable("zcode", source, output, clean=args.clean),
         ], 0
     if args.command == "validate-generated":
         result = validate_generated(source, registry)

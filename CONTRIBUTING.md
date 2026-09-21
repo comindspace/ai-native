@@ -31,6 +31,7 @@ compatible_agents:
   - opencode
   - openclaw
   - hermes
+  - zcode
 requires:
   mcp: []
   permissions:

@@ -18,6 +18,7 @@ from agent_platform.plugins.manifests import (
     write_hermes_plugin,
     write_hermes_root_plugin,
     write_openclaw_manifest,
+    write_zcode_manifest,
 )
 from agent_platform.skills import copy_skill, get_skills
 
@@ -40,6 +41,7 @@ def build_plugins(source: Path, registry: dict[str, Any], output: Path, clean: b
     marketplace_plugins: list[dict[str, Any]] = []
     claude_plugins: list[dict[str, Any]] = []
     cursor_plugins: list[dict[str, Any]] = []
+    zcode_plugins: list[dict[str, Any]] = []
 
     for pack in registry["packs"]:
         plugin_root = plugins_root / pack["name"]
@@ -53,6 +55,7 @@ def build_plugins(source: Path, registry: dict[str, Any], output: Path, clean: b
         write_cursor_manifest(plugin_root, pack, platform_release)
         write_openclaw_manifest(plugin_root, pack, platform_release)
         write_hermes_plugin(plugin_root, pack, platform_release)
+        write_zcode_manifest(plugin_root, pack, platform_release)
 
         marketplace_plugins.append(marketplace_entry(pack["name"], pack["category"]))
         claude_plugins.append(
@@ -65,6 +68,18 @@ def build_plugins(source: Path, registry: dict[str, Any], output: Path, clean: b
             }
         )
         cursor_plugins.append(claude_plugins[-1].copy())
+        # ZCode marketplace carries skill packs only: the gateway plugin's MCP
+        # wiring is agent-specific and ZCode users connect it via settings.
+        zcode_plugins.append(
+            {
+                "name": pack["name"],
+                "source": f"./plugins/{pack['name']}",
+                "description": pack["description"],
+                "version": pack_version(pack),
+                "category": pack["category"],
+                "platformRelease": platform_release,
+            }
+        )
 
     gateway_root = plugins_root / "gateway-mcp"
     if clean and gateway_root.exists():
@@ -114,6 +129,16 @@ def build_plugins(source: Path, registry: dict[str, Any], output: Path, clean: b
             "plugins": cursor_plugins,
         },
     )
+    write_json(
+        output / ".zcode-plugin/marketplace.json",
+        {
+            "name": "company-agent-skills",
+            "owner": {"name": "coMind", "email": "team@comind.space"},
+            "platformRelease": platform_release,
+            "description": "coMind agent skill packs for ZCode",
+            "plugins": zcode_plugins,
+        },
+    )
     return {
         "target": "plugins",
         "pluginsRoot": str(plugins_root),
@@ -121,6 +146,7 @@ def build_plugins(source: Path, registry: dict[str, Any], output: Path, clean: b
             str(output / ".agents/plugins/marketplace.json"),
             str(output / ".claude-plugin/marketplace.json"),
             str(output / ".cursor-plugin/marketplace.json"),
+            str(output / ".zcode-plugin/marketplace.json"),
         ],
         "plugins": len(marketplace_plugins),
     }

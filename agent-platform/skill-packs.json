@@ -3,10 +3,10 @@
   "packs": [
     {
       "name": "ai-native-core",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "displayName": "AI-Native Core",
       "category": "AI",
-      "description": "AI-Native reference skills: operating model starter kit, proposal shaping, architecture, editorial style, diagramming methods, and document templates. Installable packs for Claude Code, Codex, Cursor, OpenCode, OpenClaw, and Hermes.",
+      "description": "AI-Native reference skills: operating model starter kit, proposal shaping, architecture, editorial style, diagramming methods, and document templates. Installable packs for Claude Code, Codex, Cursor, OpenCode, OpenClaw, Hermes, and ZCode.",
       "skills": [
         "ai-native-core-starter-kit",
         "ai-native-proposal",

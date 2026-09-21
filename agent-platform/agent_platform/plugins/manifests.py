@@ -83,6 +83,31 @@ def write_cursor_manifest(plugin_root: Path, pack: dict[str, Any], platform_rele
     )
 
 
+def write_zcode_manifest(plugin_root: Path, pack: dict[str, Any], platform_release: str = "") -> None:
+    """Write the ZCode plugin manifest.
+
+    ZCode packs plugins as a directory with `.zcode-plugin/plugin.json`; the
+    `skills` field names the directory holding the skill trees. ZCode reads
+    Claude-style marketplaces, so the companion `.zcode-plugin/marketplace.json`
+    at the repository root lists these plugins with relative sources.
+    """
+    write_json(
+        plugin_root / ".zcode-plugin/plugin.json",
+        {
+            "name": pack["name"],
+            "version": pack_version(pack),
+            "description": pack["description"],
+            "author": {
+                "name": "coMind",
+                "email": "team@comind.space",
+                "url": "https://comind.space",
+            },
+            "skills": "skills",
+            "metadata": platform_metadata(platform_release),
+        },
+    )
+
+
 def write_openclaw_manifest(plugin_root: Path, pack: dict[str, Any], platform_release: str = "") -> None:
     write_json(
         plugin_root / "openclaw.plugin.json",

@@ -112,6 +112,7 @@ def write_skill_manifests(source: Path, force: bool) -> dict[str, Any]:
                 "  - opencode",
                 "  - openclaw",
                 "  - hermes",
+                "  - zcode",
                 "requires:",
                 "  mcp: []",
                 "  permissions:",

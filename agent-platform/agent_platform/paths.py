@@ -10,6 +10,7 @@ GENERATED_PATHS = [
     Path(".agents/plugins"),
     Path(".claude-plugin"),
     Path(".cursor-plugin"),
+    Path(".zcode-plugin"),
 ]
 GATEWAY_MCP_PUBLIC_URL = os.environ.get("GATEWAY_MCP_PUBLIC_URL", "https://gateway.example.com/mcp")
 GATEWAY_MCP_LOGIN_URL = os.environ.get("GATEWAY_MCP_LOGIN_URL", "https://gateway.example.com/auth/yandex/login")
