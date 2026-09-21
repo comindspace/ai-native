@@ -1,7 +1,7 @@
 {
   "name": "ai-native-core",
   "displayName": "AI-Native Core",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "AI-Native reference skills: operating model starter kit, proposal shaping, architecture, editorial style, diagramming methods, and document templates. Installable packs for Claude Code, Codex, Cursor, OpenCode, OpenClaw, and Hermes.",
   "author": {
     "name": "coMind",

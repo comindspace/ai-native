@@ -29,7 +29,6 @@ skill-name/
 - `ai-native-proposal` — shaping client proposals for AI-Native programs.
 - `architect` — GenAI architecture: RAG, agents, tool use, MCP, ADRs, security.
 - `editorial-style` — a shared final wording layer for clear business Russian.
-- `comind-docx` — DOCX formatting helpers.
 - `smd-drawio`, `func-arch-drawio`, `eepc-drawio` — diagramming methods (draw.io): system-thinking schemes, functional architecture, event-driven process chains.
 - `sequential-thinking` — structured step-by-step reasoning.
 - `document-templates` — process and document templates as a portable skill.

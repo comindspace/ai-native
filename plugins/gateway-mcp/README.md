@@ -47,11 +47,11 @@ If a GitLab route is missing or denied, report the GatewayMCP route/scope gap an
 such as a local branch, commit, patch, or merge request payload. Do not ask the user to authenticate to GitLab
 or learn GitLab mechanics unless the task is explicitly platform administration.
 After creating or reviewing a merge request, check its mergeability and conflict status before calling it ready.
-Do not send pre-merge MR notifications (MR ready, merge needed) to the coMind chat; reviewer pings are discontinued
+Do not send pre-merge MR notifications (MR ready, merge needed) to the team chat; reviewer pings are discontinued
 and the reviewer works from the MR link returned to the author. After a merge that changes company skills, plugin packs,
 or GatewayMCP skill content, send one post-merge skill update notification through the GatewayMCP notification route
 `notifications.skill_update.send`. Use a dedicated service-identity bot when available; otherwise use the configured
-GatewayMCP notification identity for the coMind chat. The message names the updated skill, briefly describes the change,
+GatewayMCP notification identity for the team chat. The message names the updated skill, briefly describes the change,
 and asks users to update their installed plugin packs. Do not require routine users to receive `telegram:read` or
 `telegram:write` grants just to receive notifications. Short-lived user Telegram grants are break-glass administration only.
 If notification routes are missing, return the message payload as a maintainer handoff and report the missing platform

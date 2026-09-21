@@ -13,8 +13,6 @@ description: "Shared document and process templates for agent work: project cont
 
 Use this skill when you need a reusable company template for a document, process artifact, Tracker description, Yonote page, proposal, report, or КП.
 
-For rules about generating or checking `.docx` files in the coMind visual and language style, use the `comind-docx` skill. This skill provides the template files; `comind-docx` provides the rendering and quality rules.
-
 ## Where Templates Live
 
 Templates are bundled in this skill under:
@@ -47,10 +45,6 @@ For company systems, use GatewayMCP instead of direct MCP servers:
 - `feature-list.md` - feature list.
 - `handoff.md` - handoff note.
 - `kickoff-protocol.md` - project kickoff protocol.
-- `kp-blank-template.docx` - blank КП Word template.
-- `kp-template-full-content.docx` - full-content КП Word template.
-- `kp-template.docx` - КП Word template.
-- `last-page-template.docx` - КП last-page Word template.
 - `lead-card.md` - lead card.
 - `marketing-content-plan.md` - marketing content plan.
 - `marketing-experiment-brief.md` - marketing experiment brief.

@@ -8,7 +8,7 @@ PLUGIN_NAME = 'company-agent-skills'
 
 
 PACKS = {
-    'ai-native-core': ['ai-native-core-starter-kit', 'ai-native-proposal', 'architect', 'smd-drawio', 'func-arch-drawio', 'eepc-drawio', 'comind-docx', 'editorial-style', 'sequential-thinking', 'document-templates'],
+    'ai-native-core': ['ai-native-core-starter-kit', 'ai-native-proposal', 'architect', 'smd-drawio', 'func-arch-drawio', 'eepc-drawio', 'editorial-style', 'sequential-thinking', 'document-templates'],
 }
 
 

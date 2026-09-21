@@ -1,4 +1,0 @@
-interface:
-  display_name: "coMind DOCX"
-  short_description: "Создаёт и проверяет документы Word в стиле coMind."
-  default_prompt: "Собери или проверь .docx в стиле coMind по шаблону и чек-листам качества."
