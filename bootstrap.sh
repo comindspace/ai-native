@@ -109,8 +109,9 @@ done
 [ "$(id -u)" -eq 0 ] || die "запусти от root: sudo bash bootstrap.sh"
 
 # Refuse piped execution (`curl ... | bash`): apt/docker children consume stdin
-# and would truncate this script mid-run with exit code 0.
-if [ -p /dev/stdin ] && [ ! -f "${BASH_SOURCE[0]}" ]; then
+# and would silently truncate this script mid-run with exit code 0.
+# BASH_SOURCE is unset when bash reads the script from stdin.
+if [ -p /dev/stdin ] && [ ! -f "${BASH_SOURCE[0]:-}" ]; then
     die "скрипт запущен из канала (curl | bash) — так нельзя: дочерние процессы
 съедают скрипт из stdin. Скачай файл и запусти его:
 
@@ -167,7 +168,16 @@ install_packages() {
     ensure_caddy || die "caddy установить не удалось"
     systemctl enable --now docker
     systemctl enable --now caddy
-    docker version >/dev/null 2>&1 || die "docker не работает"
+    if ! docker version >/dev/null 2>&1; then
+        # Reinstall-over-broken-state case: docker.service can come up without
+        # its activation socket ("no sockets found via socket activation").
+        warn "docker не поднялся с первого раза — перезапускаю docker.socket"
+        systemctl restart docker.socket 2>/dev/null || true
+        systemctl daemon-reload
+        systemctl restart docker 2>/dev/null || true
+        sleep 3
+        docker version >/dev/null 2>&1 || die "docker не работает (systemctl status docker, journalctl -u docker)"
+    fi
     if have ufw && ufw status 2>/dev/null | grep -q "Status: active"; then
         ufw allow 22/tcp >/dev/null
         ufw allow 80/tcp >/dev/null
