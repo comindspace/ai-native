@@ -14,15 +14,14 @@ Two parts:
 
 ## Deploy in one command
 
-On a clean Ubuntu/Debian VM:
+On a clean Ubuntu/Debian VM (no git or Docker required upfront):
 
 ```bash
-git clone https://github.com/comindspace/ai-native.git
-cd ai-native
+curl -fsSL https://raw.githubusercontent.com/comindspace/ai-native/main/bootstrap.sh -o bootstrap.sh
 sudo bash bootstrap.sh
 ```
 
-The script installs Docker, Docker Compose and Caddy, generates secrets, seeds the first admin, starts PostgreSQL + Gateway + notification worker behind HTTPS, verifies `/healthz`, and prints the ready MCP URL. The only manual prerequisite is a Yandex OAuth application for login (the script prints the exact redirect URI). Full guide, manual install and troubleshooting: [DEPLOY.md](DEPLOY.md) (Russian).
+Download the script to a file first: piping it straight into `bash` breaks, because child processes consume the piped script. The script installs Docker, Docker Compose, Caddy and git, clones this repository to `/opt/ai-native`, generates secrets, seeds the first admin, starts PostgreSQL + Gateway + notification worker behind HTTPS, verifies `/healthz`, and prints the ready MCP URL. The only manual prerequisite is a Yandex OAuth application for login (the script prints the exact redirect URI). Full guide, manual install and troubleshooting: [DEPLOY.md](DEPLOY.md) (Russian).
 
 ## The skill contract
 

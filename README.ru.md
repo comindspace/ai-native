@@ -11,15 +11,14 @@
 
 ## Развёртывание одной командой
 
-На чистой VM с Ubuntu или Debian:
+На чистой VM с Ubuntu или Debian (git и Docker заранее не нужны):
 
 ```bash
-git clone https://github.com/comindspace/ai-native.git
-cd ai-native
+curl -fsSL https://raw.githubusercontent.com/comindspace/ai-native/main/bootstrap.sh -o bootstrap.sh
 sudo bash bootstrap.sh
 ```
 
-Скрипт установит Docker, Docker Compose и Caddy, сгенерирует секреты, назначит первого администратора, запустит PostgreSQL, шлюз и воркер уведомлений за HTTPS, проверит `/healthz` и напечатает готовый MCP-адрес. Единственное ручное условие — OAuth-приложение Яндекса для входа (точный Redirect URI скрипт печатает сам). Полный гайд, ручная установка и разбор ошибок: [DEPLOY.md](DEPLOY.md).
+Скрипт скачивается в файл и запускается файлом: при запуске напрямую из канала (`curl | bash`) дочерние процессы съедают скрипт из stdin. Скрипт установит Docker, Docker Compose, Caddy и git, склонирует репозиторий в `/opt/ai-native`, сгенерирует секреты, назначит первого администратора, запустит PostgreSQL, шлюз и воркер уведомлений за HTTPS, проверит `/healthz` и напечатает готовый MCP-адрес. Единственное ручное условие — OAuth-приложение Яндекса для входа (точный Redirect URI скрипт печатает сам). Полный гайд, ручная установка и разбор ошибок: [DEPLOY.md](DEPLOY.md).
 
 ## Контракт скилла
 

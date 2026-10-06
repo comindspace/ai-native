@@ -13,6 +13,10 @@
 # <ip>.sslip.io domain; secrets; gateway/.env; first admin in gateway-policy.json;
 # PostgreSQL + Gateway + worker up; auth check on /healthz; HTTPS via Caddy;
 # TCP 8000 stays closed; prints the MCP URL. Never prints or overwrites secrets.
+#
+# Run from a file, never from a pipe: children like `docker compose build` read
+# stdin and would silently swallow the rest of a piped script.
+#   curl -fsSL <repo>/bootstrap.sh -o bootstrap.sh && sudo bash bootstrap.sh
 set -Eeuo pipefail
 
 # ---------------------------------------------------------------- defaults ---
@@ -52,10 +56,14 @@ usage() {
     cat <<'EOF'
 ai-native bootstrap: чистая Ubuntu/Debian VM -> работающий GatewayMCP с HTTPS.
 
-Использование:
-  sudo bash bootstrap.sh [--doctor] [--repo URL] [--branch BRANCH] [--dir PATH]
-                         [--domain DOMAIN] [--email EMAIL] [--oauth-id ID]
-                         [--oauth-secret SECRET] [--allowed-domains LIST] [--yes]
+Запуск (скачай файл и запускай файлом, не через curl | bash):
+  curl -fsSL https://raw.githubusercontent.com/comindspace/ai-native/main/bootstrap.sh -o bootstrap.sh
+  sudo bash bootstrap.sh
+
+Опции:
+  [--doctor] [--repo URL] [--branch BRANCH] [--dir PATH]
+  [--domain DOMAIN] [--email EMAIL] [--oauth-id ID]
+  [--oauth-secret SECRET] [--allowed-domains LIST] [--yes]
 
 Опции:
   --doctor                 только диагностика существующей установки
@@ -99,6 +107,16 @@ while [ $# -gt 0 ]; do
 done
 
 [ "$(id -u)" -eq 0 ] || die "запусти от root: sudo bash bootstrap.sh"
+
+# Refuse piped execution (`curl ... | bash`): apt/docker children consume stdin
+# and would truncate this script mid-run with exit code 0.
+if [ -p /dev/stdin ] && [ ! -f "${BASH_SOURCE[0]}" ]; then
+    die "скрипт запущен из канала (curl | bash) — так нельзя: дочерние процессы
+съедают скрипт из stdin. Скачай файл и запусти его:
+
+  curl -fsSL https://raw.githubusercontent.com/comindspace/ai-native/main/bootstrap.sh -o bootstrap.sh
+  sudo bash bootstrap.sh"
+fi
 
 have() { command -v "$1" >/dev/null 2>&1; }
 

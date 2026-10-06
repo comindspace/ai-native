@@ -28,15 +28,16 @@
 
 ## 3. Установка одной командой
 
-На чистой VM:
+На чистой VM (git и Docker заранее не нужны — скрипт поставит сам):
 
 ```bash
-git clone https://github.com/comindspace/ai-native.git
-cd ai-native
+curl -fsSL https://raw.githubusercontent.com/comindspace/ai-native/main/bootstrap.sh -o bootstrap.sh
 sudo bash bootstrap.sh
 ```
 
-Скрипт установит Docker, Docker Compose и Caddy, определит публичный IP, предложит домен `<ip>.sslip.io` или возьмёт ваш (`--domain`), спросит email владельца и данные OAuth-приложения (ввод скрыт, секреты не печатаются), сгенерирует остальные секреты, запишет `gateway/.env`, назначит первого администратора, соберёт и запустит PostgreSQL, шлюз и воркер уведомлений, проверит `/healthz`, выпустит HTTPS-сертификат и напечатает готовый MCP URL.
+Важно: скрипт скачивается в файл и запускается файлом. Вариант `curl ... | sudo bash` не работает: дочерние процессы (apt, docker compose) читают общий stdin и съедают остаток скрипта из канала, установка тихо обрывается.
+
+Скрипт установит Docker, Docker Compose, Caddy и git, склонирует репозиторий в `/opt/ai-native`, определит публичный IP, предложит домен `<ip>.sslip.io` или возьмёт ваш (`--domain`), спросит email владельца и данные OAuth-приложения (ввод скрыт, секреты не печатаются), сгенерирует остальные секреты, запишет `gateway/.env`, назначит первого администратора, соберёт и запустит PostgreSQL, шлюз и воркер уведомлений, проверит `/healthz`, выпустит HTTPS-сертификат и напечатает готовый MCP URL.
 
 Для собственного форка: `sudo bash bootstrap.sh --repo https://github.com/<ORG>/ai-native.git`.
 
