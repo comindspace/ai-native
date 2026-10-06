@@ -1,0 +1,291 @@
+{
+  "schema": 1,
+  "allowed_email_domains": [],
+  "default_groups": [
+    "employees"
+  ],
+  "groups": {
+    "employees": {
+      "scopes": [
+        "access:request",
+        "skills:read",
+        "tools:read",
+        "company:read",
+        "factory:read",
+        "factory:write",
+        "files:read",
+        "files:write",
+        "llm:proxy",
+        "privacy:use",
+        "process:read",
+        "approvals:read",
+        "approvals:write",
+        "memory:read",
+        "memory:write",
+        "notifications:read",
+        "notifications:write",
+        "telemetry:write"
+      ]
+    },
+    "company-readers": {
+      "scopes": [
+        "company:read"
+      ]
+    },
+    "process-readers": {
+      "scopes": [
+        "process:read"
+      ]
+    },
+    "access-readers": {
+      "scopes": [
+        "access:read"
+      ]
+    },
+    "access-admins": {
+      "scopes": [
+        "access:read",
+        "access:admin"
+      ]
+    },
+    "approval-reviewers": {
+      "scopes": [
+        "approvals:read",
+        "approvals:write"
+      ]
+    },
+    "approval-admins": {
+      "scopes": [
+        "approvals:read",
+        "approvals:write",
+        "approvals:admin"
+      ]
+    },
+    "analytics-readers": {
+      "scopes": [
+        "metrika:read",
+        "webmaster:read",
+        "wordstat:read"
+      ]
+    },
+    "memory-readers": {
+      "scopes": [
+        "memory:read"
+      ]
+    },
+    "memory-writers": {
+      "scopes": [
+        "memory:read",
+        "memory:write"
+      ]
+    },
+    "memory-admins": {
+      "scopes": [
+        "memory:read",
+        "memory:write",
+        "memory:admin"
+      ]
+    },
+    "telemetry-readers": {
+      "scopes": [
+        "telemetry:read"
+      ]
+    },
+    "telemetry-writers": {
+      "scopes": [
+        "telemetry:write"
+      ]
+    },
+    "tool-callers": {
+      "scopes": [
+        "tools:call"
+      ]
+    },
+    "service-agents": {
+      "scopes": [
+        "factory:read",
+        "factory:write",
+        "factory:claim"
+      ]
+    },
+    "file-readers": {
+      "scopes": [
+        "files:read"
+      ]
+    },
+    "file-writers": {
+      "scopes": [
+        "files:read",
+        "files:write"
+      ]
+    },
+    "llm-proxy-users": {
+      "scopes": [
+        "llm:proxy",
+        "privacy:use"
+      ]
+    },
+    "privacy-users": {
+      "scopes": [
+        "privacy:use"
+      ]
+    },
+    "yonote-readers": {
+      "scopes": [
+        "yonote:read"
+      ]
+    },
+    "tracker-readers": {
+      "scopes": [
+        "tracker:read"
+      ]
+    },
+    "gitlab-readers": {
+      "scopes": [
+        "gitlab:read"
+      ]
+    },
+    "gitlab-writers": {
+      "scopes": [
+        "gitlab:read",
+        "gitlab:write"
+      ]
+    },
+    "google-drive-readers": {
+      "scopes": [
+        "google_drive:read"
+      ]
+    },
+    "google-drive-writers": {
+      "scopes": [
+        "google_drive:read",
+        "google_drive:write"
+      ]
+    },
+    "google-docs-readers": {
+      "scopes": [
+        "google_docs:read"
+      ]
+    },
+    "google-docs-writers": {
+      "scopes": [
+        "google_docs:read",
+        "google_docs:write"
+      ]
+    },
+    "google-sheets-readers": {
+      "scopes": [
+        "google_sheets:read"
+      ]
+    },
+    "google-sheets-writers": {
+      "scopes": [
+        "google_sheets:read",
+        "google_sheets:write"
+      ]
+    },
+    "yandex-disk-readers": {
+      "scopes": [
+        "yandex_disk:read"
+      ]
+    },
+    "yandex-disk-writers": {
+      "scopes": [
+        "yandex_disk:read",
+        "yandex_disk:write"
+      ]
+    },
+    "bitrix24-readers": {
+      "scopes": [
+        "bitrix24:read"
+      ]
+    },
+    "openrouter-audio-users": {
+      "scopes": [
+        "openrouter:audio"
+      ]
+    },
+    "notification-writers": {
+      "scopes": [
+        "notifications:write",
+        "notifications:broadcast"
+      ]
+    },
+    "notification-readers": {
+      "scopes": [
+        "notifications:read"
+      ]
+    },
+    "telegram-readers": {
+      "scopes": [
+        "telegram:read"
+      ]
+    },
+    "telegram-writers": {
+      "scopes": [
+        "telegram:read",
+        "telegram:write"
+      ]
+    },
+    "calendar-readers": {
+      "scopes": [
+        "calendar:read"
+      ]
+    },
+    "mail-readers": {
+      "scopes": [
+        "mail:read"
+      ]
+    },
+    "mail-senders": {
+      "scopes": [
+        "mail:send"
+      ]
+    },
+    "writers": {
+      "scopes": [
+        "yonote:read",
+        "yonote:write",
+        "tracker:read",
+        "tracker:write",
+        "gitlab:read",
+        "gitlab:write",
+        "google_drive:read",
+        "google_drive:write",
+        "google_docs:read",
+        "google_docs:write",
+        "google_sheets:read",
+        "google_sheets:write",
+        "yandex_disk:read",
+        "yandex_disk:write",
+        "bitrix24:read",
+        "bitrix24:write",
+        "telegram:read",
+        "telegram:write",
+        "notifications:write",
+        "notifications:broadcast",
+        "mail:read",
+        "mail:send",
+        "memory:read",
+        "memory:write"
+      ]
+    },
+    "admins": {
+      "scopes": [
+        "*"
+      ]
+    },
+    "infra-readers": {
+      "scopes": [
+        "infra:read"
+      ]
+    },
+    "infra-ssh-operators": {
+      "scopes": [
+        "infra:read",
+        "infra:ssh:exec"
+      ]
+    }
+  },
+  "users": {}
+}

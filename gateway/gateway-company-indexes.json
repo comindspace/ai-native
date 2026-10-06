@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "indexes": [
+    {
+      "domain": "people_roles",
+      "title": "People / Roles Index",
+      "query": "сотрудники роли команды HR",
+      "env_id": "GATEWAY_COMPANY_PEOPLE_INDEX_ID",
+      "sources": ["Yonote", "HR system/table"]
+    },
+    {
+      "domain": "projects_clients",
+      "title": "Projects / Clients Index",
+      "query": "проекты клиенты портфель Tracker Bitrix24",
+      "env_id": "GATEWAY_COMPANY_PROJECTS_INDEX_ID",
+      "sources": ["Yonote", "Tracker", "Bitrix24"]
+    },
+    {
+      "domain": "processes",
+      "title": "Process Index",
+      "query": "индекс процессов регламенты playbooks",
+      "env_id": "GATEWAY_COMPANY_PROCESSES_INDEX_ID",
+      "sources": ["Yonote"]
+    },
+    {
+      "domain": "documents",
+      "title": "Documents Index",
+      "query": "документы шаблоны Yandex Disk Yonote",
+      "env_id": "GATEWAY_COMPANY_DOCUMENTS_INDEX_ID",
+      "sources": ["Yonote", "Yandex Disk"]
+    },
+    {
+      "domain": "decisions_adr",
+      "title": "ADR / Decisions Index",
+      "query": "ADR решения архитектурные решения GitLab",
+      "env_id": "GATEWAY_COMPANY_DECISIONS_INDEX_ID",
+      "sources": ["Yonote", "GitLab"]
+    },
+    {
+      "domain": "operational_activity",
+      "title": "Operational Activity Index",
+      "query": "оперативная активность задачи встречи Telegram Calendar Tracker",
+      "env_id": "GATEWAY_COMPANY_OPERATIONS_INDEX_ID",
+      "sources": ["Tracker", "Telegram", "Calendar", "Yonote"]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+"""GatewayMCP application package."""

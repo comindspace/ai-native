@@ -1,0 +1,2083 @@
+{
+  "schema": 1,
+  "tools": [
+    {
+      "name": "yonote.documents.search",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "documents.search",
+      "scope": "yonote:read",
+      "description": "Search Yonote documents.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.documents.get",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "documents.info",
+      "argument_aliases": {
+        "document_id": "id"
+      },
+      "scope": "yonote:read",
+      "description": "Load a Yonote document by id or shareId.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.documents.list",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "documents.list",
+      "scope": "yonote:read",
+      "description": "List Yonote documents.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.database.rows.list",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "database.rows.list",
+      "argument_aliases": {
+        "database_id": "parentDocumentId",
+        "parent_document_id": "parentDocumentId"
+      },
+      "scope": "yonote:read",
+      "description": "List rows for a Yonote database document. Pass parentDocumentId, parent_document_id, or database_id plus optional limit and offset.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.database.transaction",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "v2/database/transaction",
+      "scope": "yonote:write",
+      "description": "Run a raw Yonote database transaction. Advanced route: pass transactions/body object grouped by database id.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.database.rows.update_title",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "v2/database/transaction",
+      "scope": "yonote:write",
+      "description": "Update a Yonote database row title. Arguments: database_id, row_id, title.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.database.rows.update_values",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "v2/database/transaction",
+      "scope": "yonote:write",
+      "description": "Update Yonote database row values. Arguments: database_id, row_id, values or field_id/value.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.database.rows.create",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "v2/database/transaction",
+      "scope": "yonote:write",
+      "description": "Create a Yonote database row through a transaction. Arguments: database_id and full row object; row_id is optional when row.id exists.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.database.rows.delete",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "v2/database/transaction",
+      "scope": "yonote:write",
+      "description": "Delete a Yonote database row through a transaction. Arguments: database_id, row_id.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.documents.export",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "documents.export",
+      "argument_aliases": {
+        "document_id": "id"
+      },
+      "scope": "yonote:read",
+      "description": "Export a Yonote document.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.documents.create",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "documents.create",
+      "argument_aliases": {
+        "content": "text",
+        "markdown": "text"
+      },
+      "scope": "yonote:write",
+      "description": "Create a Yonote document.",
+      "status": "implemented"
+    },
+    {
+      "name": "yonote.documents.update",
+      "backend": "yonote",
+      "transport": "yonote-rpc",
+      "rpc_method": "documents.update",
+      "argument_aliases": {
+        "document_id": "id",
+        "content": "text",
+        "markdown": "text"
+      },
+      "scope": "yonote:write",
+      "description": "Update a Yonote document.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.issues.search",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "POST",
+      "path": "v3/issues/_search",
+      "query_args": [
+        "page",
+        "perPage",
+        "fields"
+      ],
+      "argument_aliases": {
+        "per_page": "perPage"
+      },
+      "body_arg": "body",
+      "scope": "tracker:read",
+      "description": "Search Tracker issues with Yandex Tracker Query Language or body={filter:{project:<id>}}. Arguments may include page, perPage, fields.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.issues.count",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "POST",
+      "path": "v3/issues/_count",
+      "body_arg": "body",
+      "scope": "tracker:read",
+      "description": "Count Tracker issues matching a query.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.issues.get",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "GET",
+      "path": "v3/issues/{issue_id}",
+      "path_args": [
+        "issue_id"
+      ],
+      "scope": "tracker:read",
+      "description": "Get a Tracker issue by key.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.issues.create",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "POST",
+      "path": "v3/issues",
+      "body_arg": "body",
+      "scope": "tracker:write",
+      "description": "Create a Tracker issue. Use body for the Tracker issue payload.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.issues.update",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "PATCH",
+      "path": "v3/issues/{issue_id}",
+      "path_args": [
+        "issue_id"
+      ],
+      "query_args": [
+        "version"
+      ],
+      "body_arg": "body",
+      "scope": "tracker:write",
+      "description": "Update a Tracker issue. Use body for fields to update.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.comments.add",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "POST",
+      "path": "v3/issues/{issue_id}/comments",
+      "path_args": [
+        "issue_id"
+      ],
+      "body_arg": "body",
+      "scope": "tracker:write",
+      "description": "Add a comment to a Tracker issue.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.transitions.list",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "GET",
+      "path": "v3/issues/{issue_id}/transitions",
+      "path_args": [
+        "issue_id"
+      ],
+      "scope": "tracker:read",
+      "description": "List available status transitions for a Tracker issue. Use the returned transition id before executing a status change.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.transitions.execute",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "POST",
+      "path": "v3/issues/{issue_id}/transitions/{transition_id}/_execute",
+      "path_args": [
+        "issue_id",
+        "transition_id"
+      ],
+      "body_arg": "body",
+      "scope": "tracker:write",
+      "description": "Execute a Tracker issue status transition. Body may include comment and transition screen fields when required.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.projects.search",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "POST",
+      "path": "v3/entities/project/_search",
+      "query_args": ["page", "perPage", "fields"],
+      "body_arg": "body",
+      "scope": "tracker:read",
+      "description": "Search Tracker project entities with status, dates and responsible person.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.queues.list",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "GET",
+      "path": "v3/queues",
+      "query_args": [
+        "page",
+        "perPage"
+      ],
+      "argument_aliases": {
+        "per_page": "perPage"
+      },
+      "scope": "tracker:read",
+      "description": "List Tracker queues.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.queues.fields",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "GET",
+      "path": "v3/queues/{queue_id}/fields",
+      "path_args": [
+        "queue_id"
+      ],
+      "scope": "tracker:read",
+      "description": "Get Tracker queue fields.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.worklogs.list",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "GET",
+      "path": "v3/issues/{issue_id}/worklog",
+      "path_args": [
+        "issue_id"
+      ],
+      "query_args": [
+        "perPage",
+        "id"
+      ],
+      "argument_aliases": {
+        "per_page": "perPage",
+        "after_id": "id"
+      },
+      "scope": "tracker:read",
+      "description": "List Tracker worklog records for an issue. Use perPage and id/after_id for relative pagination.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.worklogs.search",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "POST",
+      "path": "v3/worklog/_search",
+      "body_arg": "body",
+      "scope": "tracker:read",
+      "description": "Search Tracker worklog records by createdBy and createdAt range. Use body={createdBy, createdAt:{from,to}}.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.worklogs.create",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "POST",
+      "path": "v3/issues/{issue_id}/worklog",
+      "path_args": [
+        "issue_id"
+      ],
+      "body_arg": "body",
+      "scope": "tracker:write",
+      "description": "Create a Tracker worklog record for an issue. Body requires start and duration; comment is optional.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.worklogs.update",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "PATCH",
+      "path": "v3/issues/{issue_id}/worklog/{worklog_id}",
+      "path_args": [
+        "issue_id",
+        "worklog_id"
+      ],
+      "body_arg": "body",
+      "scope": "tracker:write",
+      "description": "Update a Tracker worklog record. Body may include duration, start, and comment.",
+      "status": "implemented"
+    },
+    {
+      "name": "tracker.worklogs.delete",
+      "backend": "yandex-tracker",
+      "transport": "tracker-rest",
+      "http_method": "DELETE",
+      "path": "v3/issues/{issue_id}/worklog/{worklog_id}",
+      "path_args": [
+        "issue_id",
+        "worklog_id"
+      ],
+      "scope": "tracker:write",
+      "description": "Delete a Tracker worklog record.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.projects.search",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects",
+      "query_args": [
+        "search",
+        "membership",
+        "simple",
+        "page",
+        "per_page"
+      ],
+      "scope": "gitlab:read",
+      "description": "Search GitLab projects visible to the Gateway token.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.project.get",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}",
+      "path_args": [
+        "project_id"
+      ],
+      "scope": "gitlab:read",
+      "description": "Get a GitLab project by numeric id or namespace/path.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.branches.create",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "POST",
+      "path": "projects/{project_id}/repository/branches",
+      "path_args": [
+        "project_id"
+      ],
+      "query_args": [
+        "branch",
+        "ref"
+      ],
+      "scope": "gitlab:write",
+      "description": "Create a GitLab branch from ref.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.files.get",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/repository/files/{file_path}",
+      "path_args": [
+        "project_id",
+        "file_path"
+      ],
+      "query_args": [
+        "ref"
+      ],
+      "scope": "gitlab:read",
+      "description": "Get GitLab repository file metadata/content by project, file_path, and ref.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.commits.create",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "POST",
+      "path": "projects/{project_id}/repository/commits",
+      "path_args": [
+        "project_id"
+      ],
+      "body_arg": "body",
+      "scope": "gitlab:write",
+      "description": "Create a GitLab commit. Use body={branch, commit_message, actions:[...]} per GitLab API.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.merge_requests.list",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/merge_requests",
+      "path_args": [
+        "project_id"
+      ],
+      "query_args": [
+        "state",
+        "source_branch",
+        "target_branch",
+        "search",
+        "page",
+        "per_page"
+      ],
+      "scope": "gitlab:read",
+      "description": "List GitLab merge requests for a project.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.merge_requests.get",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/merge_requests/{merge_request_iid}",
+      "path_args": [
+        "project_id",
+        "merge_request_iid"
+      ],
+      "scope": "gitlab:read",
+      "description": "Get one GitLab merge request.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.merge_requests.create",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "POST",
+      "path": "projects/{project_id}/merge_requests",
+      "path_args": [
+        "project_id"
+      ],
+      "body_arg": "body",
+      "scope": "gitlab:write",
+      "description": "Create a GitLab merge request. Use body={source_branch,target_branch,title,description,...}.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.merge_requests.changes",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/merge_requests/{merge_request_iid}/changes",
+      "path_args": [
+        "project_id",
+        "merge_request_iid"
+      ],
+      "query_args": [
+        "access_raw_diffs",
+        "unidiff"
+      ],
+      "scope": "gitlab:read",
+      "description": "Get merge request changes/diff metadata for review.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.merge_requests.diffs.list",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/merge_requests/{merge_request_iid}/diffs",
+      "path_args": [
+        "project_id",
+        "merge_request_iid"
+      ],
+      "query_args": [
+        "page",
+        "per_page",
+        "unidiff"
+      ],
+      "scope": "gitlab:read",
+      "description": "List merge request diffs for code review.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.merge_request_notes.list",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/merge_requests/{merge_request_iid}/notes",
+      "path_args": [
+        "project_id",
+        "merge_request_iid"
+      ],
+      "query_args": [
+        "page",
+        "per_page",
+        "sort",
+        "order_by"
+      ],
+      "scope": "gitlab:read",
+      "description": "List notes/comments on a GitLab merge request.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.merge_request_notes.create",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "POST",
+      "path": "projects/{project_id}/merge_requests/{merge_request_iid}/notes",
+      "path_args": [
+        "project_id",
+        "merge_request_iid"
+      ],
+      "body_arg": "body",
+      "scope": "gitlab:write",
+      "description": "Create a note/comment on a GitLab merge request. Use body={body: markdown}.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.merge_requests.merge",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "PUT",
+      "path": "projects/{project_id}/merge_requests/{merge_request_iid}/merge",
+      "path_args": [
+        "project_id",
+        "merge_request_iid"
+      ],
+      "body_arg": "body",
+      "scope": "gitlab:write",
+      "description": "Merge a GitLab merge request after explicit human approval. Use body for GitLab merge options.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.merge_request_approvals.get",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/merge_requests/{merge_request_iid}/approvals",
+      "path_args": [
+        "project_id",
+        "merge_request_iid"
+      ],
+      "scope": "gitlab:read",
+      "description": "Get GitLab merge request approval state when the GitLab edition exposes it.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.merge_request_approvals.approve",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "POST",
+      "path": "projects/{project_id}/merge_requests/{merge_request_iid}/approve",
+      "path_args": [
+        "project_id",
+        "merge_request_iid"
+      ],
+      "body_arg": "body",
+      "scope": "gitlab:write",
+      "description": "Approve a GitLab merge request when approvals are enabled. Use only after explicit human approval.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.pipelines.list",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/pipelines",
+      "path_args": [
+        "project_id"
+      ],
+      "query_args": [
+        "ref",
+        "status",
+        "page",
+        "per_page"
+      ],
+      "scope": "gitlab:read",
+      "description": "List GitLab pipelines for a project.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.pipeline_jobs.list",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/pipelines/{pipeline_id}/jobs",
+      "path_args": [
+        "project_id",
+        "pipeline_id"
+      ],
+      "query_args": [
+        "scope",
+        "include_retried",
+        "page",
+        "per_page"
+      ],
+      "scope": "gitlab:read",
+      "description": "List jobs for a GitLab pipeline.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.pipeline_jobs.get",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/jobs/{job_id}",
+      "path_args": [
+        "project_id",
+        "job_id"
+      ],
+      "scope": "gitlab:read",
+      "description": "Get one GitLab pipeline job.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.pipeline_jobs.trace",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "GET",
+      "path": "projects/{project_id}/jobs/{job_id}/trace",
+      "path_args": [
+        "project_id",
+        "job_id"
+      ],
+      "scope": "gitlab:read",
+      "description": "Get a GitLab pipeline job trace/log as text.",
+      "status": "implemented"
+    },
+    {
+      "name": "gitlab.pipeline_jobs.play",
+      "backend": "gitlab",
+      "transport": "gitlab-rest",
+      "http_method": "POST",
+      "path": "projects/{project_id}/jobs/{job_id}/play",
+      "path_args": [
+        "project_id",
+        "job_id"
+      ],
+      "scope": "gitlab:deploy",
+      "requires_approval_ref": true,
+      "approval_type": "production_deploy",
+      "requires_idempotency_key": true,
+      "description": "Trigger one manual GitLab CI job after explicit human approval. Requires the dedicated gitlab:deploy scope, approval_ref in arguments_json, and an idempotency_key. In strict resource-policy mode the actor also needs the deploy action for the target project.",
+      "status": "implemented"
+    },
+    {
+      "name": "yandex_disk.resources.get",
+      "backend": "yandex-disk",
+      "transport": "yandex-disk-rest",
+      "http_method": "GET",
+      "path": "resources",
+      "query_args": [
+        "path",
+        "limit",
+        "offset",
+        "preview_size",
+        "preview_crop"
+      ],
+      "scope": "yandex_disk:read",
+      "description": "Get Yandex Disk resource metadata and folder children by path.",
+      "status": "implemented"
+    },
+    {
+      "name": "yandex_disk.resources.files",
+      "backend": "yandex-disk",
+      "transport": "yandex-disk-rest",
+      "http_method": "GET",
+      "path": "resources/files",
+      "query_args": [
+        "limit",
+        "offset",
+        "media_type",
+        "preview_size",
+        "preview_crop"
+      ],
+      "scope": "yandex_disk:read",
+      "description": "List flat files from Yandex Disk.",
+      "status": "implemented"
+    },
+    {
+      "name": "yandex_disk.resources.download_link",
+      "backend": "yandex-disk",
+      "transport": "yandex-disk-rest",
+      "http_method": "GET",
+      "path": "resources/download",
+      "query_args": [
+        "path"
+      ],
+      "scope": "yandex_disk:read",
+      "description": "Get a temporary download link for a Yandex Disk resource.",
+      "status": "implemented"
+    },
+    {
+      "name": "yandex_disk.resources.upload_link",
+      "backend": "yandex-disk",
+      "transport": "yandex-disk-rest",
+      "http_method": "GET",
+      "path": "resources/upload",
+      "query_args": [
+        "path",
+        "overwrite"
+      ],
+      "scope": "yandex_disk:write",
+      "description": "Get a temporary upload link for a Yandex Disk path.",
+      "status": "implemented"
+    },
+    {
+      "name": "yandex_disk.resources.mkdir",
+      "backend": "yandex-disk",
+      "transport": "yandex-disk-rest",
+      "http_method": "PUT",
+      "path": "resources",
+      "query_args": [
+        "path"
+      ],
+      "scope": "yandex_disk:write",
+      "description": "Create a Yandex Disk folder.",
+      "status": "implemented"
+    },
+    {
+      "name": "yandex_disk.resources.copy",
+      "backend": "yandex-disk",
+      "transport": "yandex-disk-rest",
+      "http_method": "POST",
+      "path": "resources/copy",
+      "query_args": [
+        "from",
+        "path",
+        "overwrite"
+      ],
+      "scope": "yandex_disk:write",
+      "description": "Copy a Yandex Disk resource.",
+      "status": "implemented"
+    },
+    {
+      "name": "yandex_disk.resources.move",
+      "backend": "yandex-disk",
+      "transport": "yandex-disk-rest",
+      "http_method": "POST",
+      "path": "resources/move",
+      "query_args": [
+        "from",
+        "path",
+        "overwrite"
+      ],
+      "scope": "yandex_disk:write",
+      "description": "Move or rename a Yandex Disk resource.",
+      "status": "implemented"
+    },
+    {
+      "name": "yandex_disk.resources.delete",
+      "backend": "yandex-disk",
+      "transport": "yandex-disk-rest",
+      "http_method": "DELETE",
+      "path": "resources",
+      "query_args": [
+        "path",
+        "permanently"
+      ],
+      "scope": "yandex_disk:write",
+      "description": "Delete a Yandex Disk resource.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_sheets.spreadsheets.get",
+      "backend": "google-sheets",
+      "transport": "google-rest",
+      "google_api": "sheets",
+      "http_method": "GET",
+      "path": "{spreadsheet_id}",
+      "path_args": [
+        "spreadsheet_id"
+      ],
+      "query_args": [
+        "ranges",
+        "includeGridData",
+        "fields"
+      ],
+      "scope": "google_sheets:read",
+      "description": "Get Google Sheets spreadsheet metadata and optionally grid data. Use spreadsheet_id from the URL.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_sheets.values.get",
+      "backend": "google-sheets",
+      "transport": "google-rest",
+      "google_api": "sheets",
+      "http_method": "GET",
+      "path": "{spreadsheet_id}/values/{range}",
+      "path_args": [
+        "spreadsheet_id",
+        "range"
+      ],
+      "query_args": [
+        "majorDimension",
+        "valueRenderOption",
+        "dateTimeRenderOption"
+      ],
+      "scope": "google_sheets:read",
+      "description": "Read one A1 range from a Google Sheet. Use range like 'Sheet1!A1:D20'.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_sheets.values.batch_get",
+      "backend": "google-sheets",
+      "transport": "google-rest",
+      "google_api": "sheets",
+      "http_method": "GET",
+      "path": "{spreadsheet_id}/values:batchGet",
+      "path_args": [
+        "spreadsheet_id"
+      ],
+      "query_args": [
+        "ranges",
+        "majorDimension",
+        "valueRenderOption",
+        "dateTimeRenderOption"
+      ],
+      "scope": "google_sheets:read",
+      "description": "Read multiple A1 ranges from a Google Sheet. Pass ranges as a list or repeated query value.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_sheets.values.update",
+      "backend": "google-sheets",
+      "transport": "google-rest",
+      "google_api": "sheets",
+      "http_method": "PUT",
+      "path": "{spreadsheet_id}/values/{range}",
+      "path_args": [
+        "spreadsheet_id",
+        "range"
+      ],
+      "query_args": [
+        "valueInputOption",
+        "includeValuesInResponse",
+        "responseValueRenderOption",
+        "responseDateTimeRenderOption"
+      ],
+      "body_arg": "body",
+      "scope": "google_sheets:write",
+      "description": "Update one Google Sheets A1 range. Use body={range,majorDimension,values} and valueInputOption=RAW or USER_ENTERED.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_sheets.values.batch_update",
+      "backend": "google-sheets",
+      "transport": "google-rest",
+      "google_api": "sheets",
+      "http_method": "POST",
+      "path": "{spreadsheet_id}/values:batchUpdate",
+      "path_args": [
+        "spreadsheet_id"
+      ],
+      "body_arg": "body",
+      "scope": "google_sheets:write",
+      "description": "Batch update Google Sheets values. Use body={valueInputOption,data:[{range,values},...]}",
+      "status": "implemented"
+    },
+    {
+      "name": "google_sheets.values.append",
+      "backend": "google-sheets",
+      "transport": "google-rest",
+      "google_api": "sheets",
+      "http_method": "POST",
+      "path": "{spreadsheet_id}/values/{range}:append",
+      "path_args": [
+        "spreadsheet_id",
+        "range"
+      ],
+      "query_args": [
+        "valueInputOption",
+        "insertDataOption",
+        "includeValuesInResponse",
+        "responseValueRenderOption",
+        "responseDateTimeRenderOption"
+      ],
+      "body_arg": "body",
+      "scope": "google_sheets:write",
+      "description": "Append rows to a Google Sheets range. Use body={values:[[...],...]} and valueInputOption.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_sheets.spreadsheets.batch_update",
+      "backend": "google-sheets",
+      "transport": "google-rest",
+      "google_api": "sheets",
+      "http_method": "POST",
+      "path": "{spreadsheet_id}:batchUpdate",
+      "path_args": [
+        "spreadsheet_id"
+      ],
+      "body_arg": "body",
+      "scope": "google_sheets:write",
+      "description": "Run Google Sheets structural updates, such as adding sheets or formatting. Use body={requests:[...]}",
+      "status": "implemented"
+    },
+    {
+      "name": "google_drive.files.list",
+      "backend": "google-drive",
+      "transport": "google-rest",
+      "google_api": "drive",
+      "http_method": "GET",
+      "path": "files",
+      "query_args": [
+        "q",
+        "fields",
+        "pageSize",
+        "pageToken",
+        "orderBy",
+        "corpora",
+        "driveId",
+        "includeItemsFromAllDrives",
+        "supportsAllDrives"
+      ],
+      "scope": "google_drive:read",
+      "description": "List Google Drive files visible to the current user. For Sheets, use q=\"mimeType='application/vnd.google-apps.spreadsheet'\".",
+      "status": "implemented"
+    },
+    {
+      "name": "google_drive.files.get",
+      "backend": "google-drive",
+      "transport": "google-rest",
+      "google_api": "drive",
+      "http_method": "GET",
+      "path": "files/{file_id}",
+      "path_args": [
+        "file_id"
+      ],
+      "query_args": [
+        "fields",
+        "supportsAllDrives"
+      ],
+      "scope": "google_drive:read",
+      "description": "Get Google Drive file metadata by file_id.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_drive.files.download",
+      "backend": "google-drive",
+      "transport": "google-rest",
+      "google_api": "drive",
+      "http_method": "GET",
+      "path": "files/{file_id}",
+      "path_args": [
+        "file_id"
+      ],
+      "query_args": [
+        "supportsAllDrives"
+      ],
+      "fixed_query": {
+        "alt": "media"
+      },
+      "binary_response": true,
+      "scope": "google_drive:read",
+      "description": "Download binary content for a non-Google-Docs Drive file. Returns content_base64, content_type, and size.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_drive.files.export",
+      "backend": "google-drive",
+      "transport": "google-rest",
+      "google_api": "drive",
+      "http_method": "GET",
+      "path": "files/{file_id}/export",
+      "path_args": [
+        "file_id"
+      ],
+      "query_args": [
+        "mimeType"
+      ],
+      "binary_response": true,
+      "scope": "google_drive:read",
+      "description": "Export a Google Docs/Sheets/Slides Drive file to a requested MIME type. Returns content_base64, content_type, and size.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_drive.files.create",
+      "backend": "google-drive",
+      "transport": "google-rest",
+      "google_api": "drive",
+      "http_method": "POST",
+      "path": "files",
+      "query_args": [
+        "fields",
+        "supportsAllDrives",
+        "useContentAsIndexableText"
+      ],
+      "body_arg": "body",
+      "scope": "google_drive:write",
+      "description": "Create Drive metadata-only files such as folders or Google-native files. Use body={name,mimeType,parents}. Binary upload is not supported by this route.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_drive.files.copy",
+      "backend": "google-drive",
+      "transport": "google-rest",
+      "google_api": "drive",
+      "http_method": "POST",
+      "path": "files/{file_id}/copy",
+      "path_args": [
+        "file_id"
+      ],
+      "query_args": [
+        "fields",
+        "supportsAllDrives"
+      ],
+      "body_arg": "body",
+      "scope": "google_drive:write",
+      "description": "Copy a Drive file. Use body for new name, parents, or other writable metadata.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_drive.files.update",
+      "backend": "google-drive",
+      "transport": "google-rest",
+      "google_api": "drive",
+      "http_method": "PATCH",
+      "path": "files/{file_id}",
+      "path_args": [
+        "file_id"
+      ],
+      "query_args": [
+        "fields",
+        "addParents",
+        "removeParents",
+        "supportsAllDrives",
+        "useContentAsIndexableText"
+      ],
+      "body_arg": "body",
+      "scope": "google_drive:write",
+      "description": "Update Drive file metadata, including rename and parent changes. Use body for writable metadata and addParents/removeParents for moves.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_drive.files.delete",
+      "backend": "google-drive",
+      "transport": "google-rest",
+      "google_api": "drive",
+      "http_method": "DELETE",
+      "path": "files/{file_id}",
+      "path_args": [
+        "file_id"
+      ],
+      "query_args": [
+        "supportsAllDrives"
+      ],
+      "scope": "google_drive:write",
+      "description": "Permanently delete a Drive file by file_id.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_drive.permissions.create",
+      "backend": "google-drive",
+      "transport": "google-rest",
+      "google_api": "drive",
+      "http_method": "POST",
+      "path": "files/{file_id}/permissions",
+      "path_args": [
+        "file_id"
+      ],
+      "query_args": [
+        "emailMessage",
+        "fields",
+        "sendNotificationEmail",
+        "supportsAllDrives",
+        "transferOwnership",
+        "useDomainAdminAccess"
+      ],
+      "body_arg": "body",
+      "scope": "google_drive:write",
+      "description": "Create a Drive file permission. Use body={type,role,emailAddress|domain}.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_drive.permissions.delete",
+      "backend": "google-drive",
+      "transport": "google-rest",
+      "google_api": "drive",
+      "http_method": "DELETE",
+      "path": "files/{file_id}/permissions/{permission_id}",
+      "path_args": [
+        "file_id",
+        "permission_id"
+      ],
+      "query_args": [
+        "supportsAllDrives",
+        "useDomainAdminAccess"
+      ],
+      "scope": "google_drive:write",
+      "description": "Delete a Drive file permission by permission_id.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_docs.documents.get",
+      "backend": "google-docs",
+      "transport": "google-rest",
+      "google_api": "docs",
+      "http_method": "GET",
+      "path": "documents/{document_id}",
+      "path_args": [
+        "document_id"
+      ],
+      "query_args": [
+        "suggestionsViewMode",
+        "includeTabsContent",
+        "fields"
+      ],
+      "scope": "google_docs:read",
+      "description": "Get a Google Docs document by document_id.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_docs.documents.create",
+      "backend": "google-docs",
+      "transport": "google-rest",
+      "google_api": "docs",
+      "http_method": "POST",
+      "path": "documents",
+      "body_arg": "body",
+      "scope": "google_docs:write",
+      "description": "Create a Google Docs document. Use body={title}.",
+      "status": "implemented"
+    },
+    {
+      "name": "google_docs.documents.batch_update",
+      "backend": "google-docs",
+      "transport": "google-rest",
+      "google_api": "docs",
+      "http_method": "POST",
+      "path": "documents/{document_id}:batchUpdate",
+      "path_args": [
+        "document_id"
+      ],
+      "body_arg": "body",
+      "scope": "google_docs:write",
+      "description": "Apply Google Docs edits. Use body={requests:[...]} per the Docs API batchUpdate contract.",
+      "status": "implemented"
+    },
+    {
+      "name": "bitrix24.crm.search",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.duplicate.findbycomm",
+      "scope": "bitrix24:read",
+      "description": "Search Bitrix24 CRM duplicates. Use params={entity_type, type, values}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "поиск",
+        "дубликаты"
+      ]
+    },
+    {
+      "name": "bitrix24.leads.list",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.lead.list",
+      "scope": "bitrix24:read",
+      "description": "List Bitrix24 leads. Use params for filter/order/select/start.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "лиды",
+        "лидов",
+        "лид"
+      ]
+    },
+    {
+      "name": "bitrix24.deals.list",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.deal.list",
+      "scope": "bitrix24:read",
+      "description": "List Bitrix24 deals. Use params for filter/order/select/start. Supports standard fields, UF_* custom fields, CATEGORY_ID, STAGE_ID, ASSIGNED_BY_ID, CLOSED, DATE_MODIFY, OPPORTUNITY, CURRENCY_ID and pagination start.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "сделки",
+        "сделок",
+        "сделка",
+        "воронка",
+        "продажи"
+      ]
+    },
+    {
+      "name": "bitrix24.deals.get",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.deal.get",
+      "scope": "bitrix24:read",
+      "description": "Get one Bitrix24 deal by id. Use params={id}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "сделки",
+        "сделок",
+        "сделка",
+        "воронка",
+        "продажи"
+      ]
+    },
+    {
+      "name": "bitrix24.deals.fields",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.deal.fields",
+      "scope": "bitrix24:read",
+      "description": "Get Bitrix24 deal field metadata, including UF_* custom fields such as next step, next touch date, proposal link, contract link and discovery link.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "сделки",
+        "сделок",
+        "сделка",
+        "воронка",
+        "продажи"
+      ]
+    },
+    {
+      "name": "bitrix24.contacts.list",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.contact.list",
+      "scope": "bitrix24:read",
+      "description": "List Bitrix24 contacts. Use params for filter/order/select/start.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "контакты",
+        "контакт"
+      ]
+    },
+    {
+      "name": "bitrix24.companies.list",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.company.list",
+      "scope": "bitrix24:read",
+      "description": "List Bitrix24 companies. Use params for filter/order/select/start.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "компании",
+        "компаний",
+        "компания",
+        "контрагенты"
+      ]
+    },
+    {
+      "name": "bitrix24.companies.get",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.company.get",
+      "scope": "bitrix24:read",
+      "description": "Get one Bitrix24 company by id. Use params={id}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "компании",
+        "компаний",
+        "компания",
+        "контрагенты"
+      ]
+    },
+    {
+      "name": "bitrix24.companies.fields",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.company.fields",
+      "scope": "bitrix24:read",
+      "description": "Get Bitrix24 company field metadata, including WEB and UF_* custom company fields.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "компании",
+        "компаний",
+        "компания",
+        "контрагенты"
+      ]
+    },
+    {
+      "name": "bitrix24.current_user.get",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "user.current",
+      "scope": "bitrix24:read",
+      "description": "Get the Bitrix24 webhook user.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "пользователи",
+        "сотрудники"
+      ]
+    },
+    {
+      "name": "bitrix24.users.list",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "user.get",
+      "scope": "bitrix24:read",
+      "description": "List Bitrix24 users. Use params={filter, sort, order, start}; select ID, NAME, LAST_NAME, EMAIL, ACTIVE and WORK_POSITION when available.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "пользователи",
+        "сотрудники"
+      ]
+    },
+    {
+      "name": "bitrix24.users.get",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "user.get",
+      "scope": "bitrix24:read",
+      "description": "Get Bitrix24 users by id/filter. Use params={ID:<user_id>} or params={filter:{ID:<user_id>}} depending on portal support.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "пользователи",
+        "сотрудники"
+      ]
+    },
+    {
+      "name": "bitrix24.leads.create",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.lead.add",
+      "scope": "bitrix24:write",
+      "description": "Create a Bitrix24 lead. Use params={fields:{...}}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "лиды",
+        "лидов",
+        "лид"
+      ]
+    },
+    {
+      "name": "bitrix24.leads.update",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.lead.update",
+      "scope": "bitrix24:write",
+      "description": "Update Bitrix24 lead fields by id. Use params={id, fields:{...}}; supports SOURCE_DESCRIPTION, TITLE, STATUS_ID, ASSIGNED_BY_ID, COMMENTS and other lead fields.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "лиды",
+        "лидов",
+        "лид",
+        "обновить",
+        "обновление",
+        "источник"
+      ]
+    },
+    {
+      "name": "bitrix24.deals.create",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.deal.add",
+      "scope": "bitrix24:write",
+      "description": "Create a Bitrix24 deal. Use params={fields:{...}}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "сделки",
+        "сделок",
+        "сделка",
+        "воронка",
+        "продажи"
+      ]
+    },
+    {
+      "name": "bitrix24.companies.create",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.company.add",
+      "scope": "bitrix24:write",
+      "description": "Create a Bitrix24 company. Use params={fields:{TITLE:\"...\", WEB:[{VALUE:\"https://...\", VALUE_TYPE:\"WORK\"}], ...}}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "компании",
+        "компаний",
+        "компания",
+        "контрагенты"
+      ]
+    },
+    {
+      "name": "bitrix24.companies.update",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.company.update",
+      "scope": "bitrix24:write",
+      "description": "Update a Bitrix24 company. Use params={id:<company_id>, fields:{...}}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "компании",
+        "компаний",
+        "компания",
+        "контрагенты"
+      ]
+    },
+    {
+      "name": "bitrix24.companies.upsert",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "scope": "bitrix24:write",
+      "description": "Find or create/update a Bitrix24 company, normalize website into WEB, and optionally link a deal. Use params={title:\"...\", website:\"https://...\", fields:{...}, deal_id:<deal_id>, update_existing:true, create_if_missing:true}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "компании",
+        "компаний",
+        "компания",
+        "контрагенты"
+      ]
+    },
+    {
+      "name": "bitrix24.deals.update",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.deal.update",
+      "scope": "bitrix24:write",
+      "description": "Update a Bitrix24 deal. Use params={id, fields:{...}}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "сделки",
+        "сделок",
+        "сделка",
+        "воронка",
+        "продажи"
+      ]
+    },
+    {
+      "name": "bitrix24.statuses.list",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.status.list",
+      "scope": "bitrix24:read",
+      "description": "List Bitrix24 CRM statuses. Use params={filter:{ENTITY_ID:\"DEAL_STAGE\"}} to find deal stages.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "стадии",
+        "стадий",
+        "стадия",
+        "статусы"
+      ]
+    },
+    {
+      "name": "bitrix24.sales_funnel.health",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "scope": "bitrix24:read",
+      "description": "Build sales funnel hygiene for active Bitrix24 deals. Arguments: category_id=0, include_executing=true, stale_days=7, require_next_step=true, dry_run=true, max_deals=100. Returns responsible names, last/next activity dates, next step, hygiene flags and suggested nudge text.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "воронка",
+        "продажи",
+        "гигиена"
+      ]
+    },
+    {
+      "name": "bitrix24.timeline.comments.list",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.timeline.comment.list",
+      "scope": "bitrix24:read",
+      "description": "List Bitrix24 CRM timeline comments. Use params={filter:{ENTITY_TYPE:\"deal\", ENTITY_ID:<deal_id>}, order, select, start}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "комментарии",
+        "таймлайн",
+        "хронология"
+      ]
+    },
+    {
+      "name": "bitrix24.timeline.comment.add",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.timeline.comment.add",
+      "scope": "bitrix24:write",
+      "description": "Add a Bitrix24 CRM timeline comment. Use params={fields:{ENTITY_TYPE:\"deal\", ENTITY_ID:<deal_id>, COMMENT:\"...\", FILES:[[\"file.pdf\",\"base64\"]]}}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "комментарии",
+        "таймлайн",
+        "хронология"
+      ]
+    },
+    {
+      "name": "bitrix24.timeline.comment.add_with_files",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "scope": "bitrix24:write",
+      "description": "Add a Bitrix24 CRM timeline comment with normalized file attachments. Use params={entity_type:\"deal\", entity_id:<deal_id>, comment:\"...\", files:[{name:\"file.pdf\", content_base64:\"...\"}]}. Files are sent to crm.timeline.comment.add as FILES.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "комментарии",
+        "таймлайн",
+        "хронология"
+      ]
+    },
+    {
+      "name": "bitrix24.deals.attach_file",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "scope": "bitrix24:write",
+      "description": "Attach one or more base64 files to a deal timeline comment. Use params={deal_id:<deal_id>, comment:\"...\", files:[{name:\"proposal.pdf\", content_base64:\"...\"}]}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "сделки",
+        "сделок",
+        "сделка",
+        "воронка",
+        "продажи"
+      ]
+    },
+    {
+      "name": "bitrix24.disk.folder.uploadfile",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "disk.folder.uploadfile",
+      "scope": "bitrix24:write",
+      "description": "Upload a file to a Bitrix24 Drive folder. Use params={id:<folder_id>, data:{NAME:\"file.pdf\"}, fileContent:[\"file.pdf\",\"base64\"]}. Requires disk/drive permission on the Bitrix webhook.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "файлы",
+        "диск"
+      ]
+    },
+    {
+      "name": "bitrix24.disk.storage.uploadfile",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "disk.storage.uploadfile",
+      "scope": "bitrix24:write",
+      "description": "Upload a file to the root of a Bitrix24 Drive storage. Use params={id:<storage_id>, data:{NAME:\"file.pdf\"}, fileContent:[\"file.pdf\",\"base64\"]}. Requires disk/drive permission on the Bitrix webhook.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "файлы",
+        "диск"
+      ]
+    },
+    {
+      "name": "bitrix24.activities.list",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.activity.list",
+      "scope": "bitrix24:read",
+      "description": "List Bitrix24 CRM activities. Use params={filter:{OWNER_TYPE_ID, OWNER_ID, RESPONSIBLE_ID, COMPLETED, DEADLINE}, order, select, start}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "активности",
+        "активность",
+        "касание",
+        "касания"
+      ]
+    },
+    {
+      "name": "bitrix24.activities.add",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.activity.add",
+      "scope": "bitrix24:write",
+      "description": "Create a Bitrix24 CRM activity/follow-up. Use params={fields:{OWNER_TYPE_ID, OWNER_ID, TYPE_ID, SUBJECT, DESCRIPTION, RESPONSIBLE_ID, DEADLINE, COMPLETED}}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "активности",
+        "активность",
+        "касание",
+        "касания"
+      ]
+    },
+    {
+      "name": "bitrix24.activities.update",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "crm.activity.update",
+      "scope": "bitrix24:write",
+      "description": "Update a Bitrix24 CRM activity. Use params={id:<activity_id>, fields:{...}}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "активности",
+        "активность",
+        "касание",
+        "касания"
+      ]
+    },
+    {
+      "name": "bitrix24.tasks.list",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "tasks.task.list",
+      "scope": "bitrix24:read",
+      "description": "List Bitrix24 tasks. Use params={filter, select, order, start}. CRM-linked tasks can use UF_CRM_TASK values such as D_<deal_id>.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "задачи",
+        "задач",
+        "задача"
+      ]
+    },
+    {
+      "name": "bitrix24.tasks.add",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "tasks.task.add",
+      "scope": "bitrix24:write",
+      "description": "Create a Bitrix24 task for a responsible user. Use params={fields:{TITLE, DESCRIPTION, RESPONSIBLE_ID, DEADLINE, UF_CRM_TASK:[\"D_<deal_id>\"]}}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "задачи",
+        "задач",
+        "задача"
+      ]
+    },
+    {
+      "name": "bitrix24.tasks.update",
+      "backend": "bitrix24",
+      "transport": "bitrix24-rest",
+      "bitrix_method": "tasks.task.update",
+      "scope": "bitrix24:write",
+      "description": "Update a Bitrix24 task. Use params={taskId:<task_id>, fields:{...}}.",
+      "status": "implemented",
+      "keywords": [
+        "битрикс",
+        "битрикс24",
+        "задачи",
+        "задач",
+        "задача"
+      ]
+    },
+    {
+      "name": "telegram.messages.search",
+      "backend": "telegram",
+      "transport": "telegram",
+      "operation": "search_messages",
+      "scope": "telegram:read",
+      "description": "Search Telegram messages through GatewayMCP.",
+      "status": "implemented"
+    },
+    {
+      "name": "telegram.chats.list",
+      "backend": "telegram",
+      "transport": "telegram",
+      "operation": "list_chats",
+      "scope": "telegram:read",
+      "description": "List Telegram dialogs visible to the Gateway session.",
+      "status": "implemented"
+    },
+    {
+      "name": "telegram.messages.get",
+      "backend": "telegram",
+      "transport": "telegram",
+      "operation": "get_messages",
+      "scope": "telegram:read",
+      "description": "Get recent Telegram messages from one chat.",
+      "status": "implemented"
+    },
+    {
+      "name": "telegram.messages.send",
+      "backend": "telegram",
+      "transport": "telegram",
+      "operation": "send_message",
+      "scope": "telegram:write",
+      "description": "Send a Telegram message from the Gateway session.",
+      "status": "implemented"
+    },
+    {
+      "name": "telegram.files.download",
+      "backend": "telegram",
+      "transport": "telegram",
+      "operation": "download_file",
+      "scope": "telegram:read",
+      "description": "Download a file attachment (document, PDF, photo) from a Telegram message. Returns file_name, mime_type, size and content_base64. Use params={chat_id:<chat_id>, message_id:<message_id>}. Pair with bitrix24.deals.attach_file or bitrix24.timeline.comment.add_with_files to attach the downloaded file to a CRM entity.",
+      "status": "implemented"
+    },
+    {
+      "name": "notifications.skill_update.send",
+      "backend": "notifications",
+      "transport": "notification",
+      "operation": "skill_update.send",
+      "scope": "notifications:write",
+      "description": "Send a post-merge skill update notification to the configured team chat through the GatewayMCP service identity, asking users to update their installed plugin packs.",
+      "status": "implemented"
+    },
+    {
+      "name": "openrouter.audio.transcribe",
+      "backend": "openrouter-audio",
+      "transport": "openrouter-audio",
+      "operation": "transcribe_audio",
+      "scope": "openrouter:audio",
+      "description": "Transcribe audio through the OpenRouter audio backend.",
+      "status": "implemented"
+    },
+    {
+      "name": "openrouter.audio.models",
+      "backend": "openrouter-audio",
+      "transport": "openrouter-audio",
+      "operation": "list_audio_models",
+      "scope": "openrouter:audio",
+      "description": "List OpenRouter models that advertise audio input.",
+      "status": "implemented"
+    },
+    {
+      "name": "mail.messages.search",
+      "backend": "yandex-mail",
+      "transport": "yandex-mail",
+      "operation": "search_messages",
+      "scope": "mail:read",
+      "description": "Search recent Yandex Mail messages via IMAP XOAUTH2 using the logged-in user's OAuth token. Each message includes subject/from/to/date/message_id, a short text preview (default 2000 chars, tunable via text_max_chars; disable via include_text=false), and is_bounce flag (delivery-status notifications / mailer-daemon). Set unseen_only=true to return only unread messages. Use mail.messages.get for full body + attachments.",
+      "status": "implemented"
+    },
+    {
+      "name": "mail.messages.send",
+      "backend": "yandex-mail",
+      "transport": "yandex-mail",
+      "operation": "send_message",
+      "scope": "mail:send",
+      "description": "Send a Yandex Mail message via SMTP XOAUTH2 using the logged-in user's OAuth token. Required: to, subject, body. Optional: cc.",
+      "status": "implemented"
+    },
+    {
+      "name": "mail.messages.get",
+      "backend": "yandex-mail",
+      "transport": "yandex-mail",
+      "operation": "get_message",
+      "scope": "mail:read",
+      "description": "Fetch a full Yandex Mail message by mailbox and message id via IMAP XOAUTH2 using the logged-in user's OAuth token. Returns headers, plain-text body, HTML body, attachment metadata (filename, content_type, size), and is_bounce flag. Set include_attachments_content=true to also inline each attachment's bytes as content_base64 (skipped with content_skipped note above 10 MB). Use mail.messages.search to discover message ids first.",
+      "status": "implemented"
+    },
+    {
+      "name": "mail.messages.mark_read",
+      "backend": "yandex-mail",
+      "transport": "yandex-mail",
+      "operation": "mark_read",
+      "scope": "mail:write",
+      "description": "Update the \\Seen IMAP flag of one Yandex Mail message via IMAP XOAUTH2 using the logged-in user's OAuth token. By default marks the message as read; set unread=true to mark it as unread instead. Use params={mailbox:'INBOX', id:'<id from mail.messages.search>'}. Read-only fetching never flips flags, so transcript/file-processing workflows should call this after a message is fully handled.",
+      "status": "implemented"
+    },
+    {
+      "name": "mail.folders.list",
+      "backend": "yandex-mail",
+      "transport": "yandex-mail",
+      "operation": "list_folders",
+      "scope": "mail:read",
+      "description": "List Yandex Mail folders (IMAP LIST) using the logged-in user's OAuth token. Returns each folder's decoded name (custom folder names arrive as IMAP modified UTF-7 and are decoded here), the raw IMAP name, the hierarchy delimiter, and flags. Use the decoded name as the destination for mail.messages.move.",
+      "status": "implemented"
+    },
+    {
+      "name": "mail.messages.move",
+      "backend": "yandex-mail",
+      "transport": "yandex-mail",
+      "operation": "move_message",
+      "scope": "mail:write",
+      "description": "Move one Yandex Mail message to another folder via IMAP COPY + \\Deleted + EXPUNGE using the logged-in user's OAuth token. Required: id (from mail.messages.search) and destination (folder name from mail.folders.list, e.g. a custom folder; non-ASCII names are UTF-7 encoded and quoted automatically). Message flags such as unread state are preserved.",
+      "status": "implemented"
+    },
+    {
+      "name": "calendar.events.search",
+      "backend": "caldav",
+      "transport": "caldav",
+      "operation": "search_events",
+      "scope": "calendar:read",
+      "description": "Search calendar events through GatewayMCP.",
+      "status": "implemented"
+    },
+    {
+      "name": "calendar.calendars.list",
+      "backend": "caldav",
+      "transport": "caldav",
+      "operation": "list_calendars",
+      "scope": "calendar:read",
+      "description": "List CalDAV calendars available to the Gateway account.",
+      "status": "implemented"
+    },
+    {
+      "name": "infra.servers.search",
+      "backend": "infra",
+      "transport": "infra",
+      "operation": "servers.search",
+      "scope": "infra:read",
+      "description": "Search registered infrastructure servers without returning secrets.",
+      "status": "implemented"
+    },
+    {
+      "name": "infra.servers.get",
+      "backend": "infra",
+      "transport": "infra",
+      "operation": "servers.get",
+      "scope": "infra:read",
+      "description": "Get one registered infrastructure server without returning secrets.",
+      "status": "implemented"
+    },
+    {
+      "name": "infra.ssh.exec",
+      "backend": "infra",
+      "transport": "infra",
+      "operation": "ssh.exec",
+      "scope": "infra:ssh:exec",
+      "description": "Run an allowlisted SSH diagnostic command through a server-side credential handle.",
+      "status": "implemented"
+    },
+    {
+      "name": "metrika.counters.list",
+      "backend": "yandex-metrika",
+      "transport": "metrika-rest",
+      "http_method": "GET",
+      "path": "management/v1/counters",
+      "query_args": [
+        "type",
+        "ucoip",
+        "search"
+      ],
+      "scope": "metrika:read",
+      "description": "List Yandex Metrika counters visible to the configured token.",
+      "status": "implemented"
+    },
+    {
+      "name": "metrika.stats.data",
+      "backend": "yandex-metrika",
+      "transport": "metrika-rest",
+      "http_method": "GET",
+      "path": "stat/v1/data",
+      "query_args": [
+        "ids",
+        "metrics",
+        "dimensions",
+        "date1",
+        "date2",
+        "filters",
+        "sort",
+        "limit",
+        "offset",
+        "accuracy",
+        "group",
+        "preset",
+        "lang"
+      ],
+      "scope": "metrika:read",
+      "description": "Query Yandex Metrika analytics (visits, users, sources, goals). Pass ids (counter id), metrics (e.g. ym:s:visits,ym:s:users), dimensions (e.g. ym:s:lastTrafficSource), date1/date2 (YYYY-MM-DD or 30_days_ago/today), or a preset (e.g. traffic_summary).",
+      "status": "implemented"
+    },
+    {
+      "name": "metrika.goals.list",
+      "backend": "yandex-metrika",
+      "transport": "metrika-rest",
+      "http_method": "GET",
+      "path": "management/v1/counter/{counter_id}/goals",
+      "path_args": [
+        "counter_id"
+      ],
+      "scope": "metrika:read",
+      "description": "List goals configured on a Yandex Metrika counter. Use with metrika.stats.data and the ym:s:goal<id>reaches metric to measure conversions.",
+      "status": "implemented"
+    },
+    {
+      "name": "metrika.stats.timeseries",
+      "backend": "yandex-metrika",
+      "transport": "metrika-rest",
+      "http_method": "GET",
+      "path": "stat/v1/data/bytime",
+      "query_args": [
+        "ids",
+        "metrics",
+        "dimensions",
+        "date1",
+        "date2",
+        "group",
+        "filters",
+        "limit",
+        "accuracy",
+        "lang"
+      ],
+      "scope": "metrika:read",
+      "description": "Query Yandex Metrika as a time series grouped by day/week/month. Pass ids, metrics (e.g. ym:s:visits), date1/date2, group (day|week|month).",
+      "status": "implemented"
+    },
+    {
+      "name": "webmaster.sites.list",
+      "backend": "yandex-webmaster",
+      "transport": "webmaster-rest",
+      "operation": "list_hosts",
+      "scope": "webmaster:read",
+      "description": "List sites in Yandex Webmaster visible to the configured token. Returns host_id values for other webmaster routes.",
+      "status": "implemented"
+    },
+    {
+      "name": "webmaster.host.summary",
+      "backend": "yandex-webmaster",
+      "transport": "webmaster-rest",
+      "operation": "host_summary",
+      "path_args": [
+        "host_id"
+      ],
+      "scope": "webmaster:read",
+      "description": "Get Yandex Webmaster site summary: verification state and indexing indicators. Get host_id from webmaster.sites.list.",
+      "status": "implemented"
+    },
+    {
+      "name": "webmaster.search-queries.popular",
+      "backend": "yandex-webmaster",
+      "transport": "webmaster-rest",
+      "operation": "search_queries_popular",
+      "path_args": [
+        "host_id"
+      ],
+      "query_args": [
+        "order_by",
+        "query_indicator",
+        "device_type_indicator",
+        "date_from",
+        "date_to",
+        "limit",
+        "offset"
+      ],
+      "scope": "webmaster:read",
+      "description": "Get popular search queries from Yandex Webmaster. order_by=TOTAL_SHOWS|TOTAL_CLICKS; query_indicator may repeat (TOTAL_SHOWS, TOTAL_CLICKS, AVG_SHOW_POSITION, AVG_CLICK_POSITION). Get host_id from webmaster.sites.list.",
+      "status": "implemented"
+    },
+    {
+      "name": "wordstat.top_requests",
+      "backend": "yandex-wordstat",
+      "transport": "wordstat-rest",
+      "operation": "top_requests",
+      "query_args": [
+        "phrase",
+        "num_phrases",
+        "regions",
+        "devices",
+        "folder_id"
+      ],
+      "scope": "wordstat:read",
+      "description": "Yandex Wordstat: popular queries containing the keyword plus similar queries for the last 30 days. Returns totalCount - the total number of queries with the keyword. regions accepts region ids (comma-separated or list), devices: DESKTOP/PHONE/TABLET/ALL.",
+      "status": "implemented"
+    },
+    {
+      "name": "wordstat.dynamics",
+      "backend": "yandex-wordstat",
+      "transport": "wordstat-rest",
+      "operation": "dynamics",
+      "query_args": [
+        "phrase",
+        "period",
+        "from_date",
+        "to_date",
+        "regions",
+        "devices",
+        "folder_id"
+      ],
+      "scope": "wordstat:read",
+      "description": "Yandex Wordstat: keyword query frequency over time. period: monthly/weekly/daily, from_date and to_date as YYYY-MM-DD (monthly requires to_date to be the last day of a month).",
+      "status": "implemented"
+    },
+    {
+      "name": "wordstat.regions_distribution",
+      "backend": "yandex-wordstat",
+      "transport": "wordstat-rest",
+      "operation": "regions_distribution",
+      "query_args": [
+        "phrase",
+        "regions",
+        "devices",
+        "folder_id"
+      ],
+      "scope": "wordstat:read",
+      "description": "Yandex Wordstat: distribution of the number of keyword queries by region for the last 30 days.",
+      "status": "implemented"
+    },
+    {
+      "name": "wordstat.regions_tree",
+      "backend": "yandex-wordstat",
+      "transport": "wordstat-rest",
+      "operation": "regions_tree",
+      "query_args": [
+        "folder_id"
+      ],
+      "scope": "wordstat:read",
+      "description": "Yandex Wordstat: tree of supported regions with ids, for use as regions in other wordstat routes.",
+      "status": "implemented"
+    },
+    {
+      "name": "calendar.events.create",
+      "backend": "caldav",
+      "transport": "caldav",
+      "operation": "create_event",
+      "scope": "calendar:write",
+      "description": "Create a calendar event (meeting/call). Arguments: calendar_index (from calendar.calendars.list), summary (required), start, end (ISO datetime), description, location, attendee (email). Returns the created event.",
+      "status": "implemented"
+    }
+  ]
+}

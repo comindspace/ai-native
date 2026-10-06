@@ -1,0 +1,6 @@
+include gateway-tools.json
+include gateway-policy.json
+include gateway-company-indexes.json
+include gateway-factory-projects.json
+recursive-include gateway_mcp *.py
+recursive-include migrations *.sql

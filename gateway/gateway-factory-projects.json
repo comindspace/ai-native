@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "queue_fallback": {
+    "mode": "allowlist",
+    "queues": [],
+    "reason": "Queue-prefix fallback exists only for legacy issues. New Tracker projects must use project.primary."
+  },
+  "projects": []
+}
