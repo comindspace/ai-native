@@ -225,16 +225,26 @@ healthz_check() {
 
 # ------------------------------------------------------------ locate clone ---
 
+refuse_if_installed() {
+    # Fail fast, before any system changes, on an existing install: a rerun
+    # would regenerate .env secrets and cut the gateway from its database.
+    local dir="$INSTALL_DIR" script_dir
+    script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    if [ -d "${script_dir}/gateway" ] && [ -d "${script_dir}/.git" ]; then
+        dir="$script_dir"
+    fi
+    if [ -e "${dir}/gateway/.env" ]; then
+        die "${dir}: установка уже есть (.env). Повторная установка перезаписала бы секреты
+и отрезала бы шлюз от существующей базы. Диагностика: sudo bash ${dir}/bootstrap.sh --doctor"
+    fi
+}
+
 locate_install_dir() {
     # Running from inside a repository clone with gateway/ -> reuse it.
     local script_dir
     script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     if [ -d "${script_dir}/gateway" ] && [ -d "${script_dir}/.git" ]; then
         INSTALL_DIR="$script_dir"
-        if [ -e "${INSTALL_DIR}/gateway/.env" ]; then
-            die "${INSTALL_DIR}: установка уже есть (.env). Повторная установка перезаписала бы секреты
-и отрезала бы шлюз от существующей базы. Диагностика: sudo bash ${INSTALL_DIR}/bootstrap.sh --doctor"
-        fi
         log "Использую репозиторий, из которого запущен скрипт: ${INSTALL_DIR}"
     else
         if [ -e "${INSTALL_DIR}/gateway/.env" ]; then
@@ -499,6 +509,7 @@ if [ "$MODE" = "doctor" ]; then
     exit 0
 fi
 
+refuse_if_installed
 install_packages
 locate_install_dir
 collect_input
