@@ -2,6 +2,8 @@
 
 Thanks for your interest. This repository is a published export of an actively maintained internal project; development happens in the maintainers' canonical repository and is mirrored here. External contributions are welcome and land through the maintainers.
 
+The `gateway/` directory is a git subtree mirror of the standalone [`comindspace/gateway-mcp`](https://github.com/comindspace/gateway-mcp) repository. Server bugs and features belong there; skills, packs, and the installer (`bootstrap.sh`, `DEPLOY.md`) belong here. Maintainers sync the subtree with `git subtree pull --prefix gateway <gateway-mcp-remote> main`.
+
 ## The skill contract
 
 Every skill is a directory under `skills/`:

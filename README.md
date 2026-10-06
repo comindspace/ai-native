@@ -1,13 +1,28 @@
-# ai-native: agent skill platform
+# ai-native: agent skill platform + gateway
 
 [![CI](https://github.com/comindspace/ai-native/actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
-A portable skill system for AI coding and operational assistants. Skills are executable instructions: how to do a piece of work according to your company's rules. They live in a repository, are versioned, reviewed, and packed into installable plugin packs for different agents — Claude Code, Codex, Cursor, OpenCode, OpenClaw, Hermes, ZCode.
+A portable skill system for AI coding and operational assistants — bundled with the GatewayMCP server the skills talk to. One repository, one command to deploy, one MCP URL for every agent client.
 
-This repository contains the AI-Native reference set: methodology skills for running company operations with assistants, plus the build tool that turns a canonical `skills/` tree into installable packs.
+Two parts:
+
+- **Skills platform.** Skills are executable instructions: how to do a piece of work according to your company's rules. They live in a repository, are versioned, reviewed, and packed into installable plugin packs for different agents — Claude Code, Codex, Cursor, OpenCode, OpenClaw, Hermes, ZCode. This repository contains the AI-Native reference skill set plus the build tool that turns the canonical `skills/` tree into packs.
+- **GatewayMCP** (the `gateway/` directory). One MCP boundary between assistants and company systems: OAuth, scopes and resource grants, audit, secret isolation, corporate memory, and backend adapters. Agents connect to the gateway, authenticate once, and call a small, stable set of public MCP tools — backend credentials never reach the agent. The same server code is also published standalone as [`comindspace/gateway-mcp`](https://github.com/comindspace/gateway-mcp).
 
 > Status: early public release of a system in daily production use. Skills are written for a Russian business environment first; English packaging is catching up. [Читать по-русски](README.ru.md).
+
+## Deploy in one command
+
+On a clean Ubuntu/Debian VM:
+
+```bash
+git clone https://github.com/comindspace/ai-native.git
+cd ai-native
+sudo bash bootstrap.sh
+```
+
+The script installs Docker, Docker Compose and Caddy, generates secrets, seeds the first admin, starts PostgreSQL + Gateway + notification worker behind HTTPS, verifies `/healthz`, and prints the ready MCP URL. The only manual prerequisite is a Yandex OAuth application for login (the script prints the exact redirect URI). Full guide, manual install and troubleshooting: [DEPLOY.md](DEPLOY.md) (Russian).
 
 ## The skill contract
 
@@ -53,9 +68,19 @@ Targets: Claude Code (`.claude-plugin`), Codex (`.codex-plugin` + marketplace), 
 
 ZCode consumes Claude-style plugin marketplaces. Add this repository as a marketplace (it ships `.zcode-plugin/marketplace.json`) and install the `ai-native-core` pack, or copy the skill directories from `skills/` into your `.zcode/skills/`. The GatewayMCP server is not wired by the pack: connect it through ZCode's own MCP settings.
 
-## Where GatewayMCP fits
+## Repository layout
 
-Agents reach company systems (wiki, tracker, code hosting, CRM, mail, calendar, drives) through one MCP gateway — not through scattered credentials. The gateway is the companion repository [`comindspace/gateway-mcp`](https://github.com/comindspace/gateway-mcp): OAuth, scopes, per-resource grants, audit, secret isolation, skill telemetry ingestion.
+```text
+gateway/           GatewayMCP server: code, compose files, policy, tests
+skills/            canonical skill tree (source of truth for packs)
+agent-platform/    pack builder and its tests
+plugins/           generated plugin packs (do not edit by hand)
+.claude-plugin/ .cursor-plugin/ .zcode-plugin/ .agents/   agent marketplaces
+bootstrap.sh       one-command VM installer
+DEPLOY.md          deployment guide (Russian)
+```
+
+The `gateway/` directory mirrors the standalone `comindspace/gateway-mcp` repository; server-specific docs live there (`gateway/README.md`, `gateway/SECURITY.md`, `gateway/docs/`). Update it with `git subtree pull --prefix gateway <gateway-mcp-remote> main`.
 
 ## Writing your own skills
 
