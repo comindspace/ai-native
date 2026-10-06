@@ -8,7 +8,7 @@ A portable skill system for AI coding and operational assistants — bundled wit
 Two parts:
 
 - **Skills platform.** Skills are executable instructions: how to do a piece of work according to your company's rules. They live in a repository, are versioned, reviewed, and packed into installable plugin packs for different agents — Claude Code, Codex, Cursor, OpenCode, OpenClaw, Hermes, ZCode. This repository contains the AI-Native reference skill set plus the build tool that turns the canonical `skills/` tree into packs.
-- **GatewayMCP** (the `gateway/` directory). One MCP boundary between assistants and company systems: OAuth, scopes and resource grants, audit, secret isolation, corporate memory, and backend adapters. Agents connect to the gateway, authenticate once, and call a small, stable set of public MCP tools — backend credentials never reach the agent. The same server code is also published standalone as [`comindspace/gateway-mcp`](https://github.com/comindspace/gateway-mcp).
+- **GatewayMCP** (the `gateway/` directory). One MCP boundary between assistants and company systems: OAuth, scopes and resource grants, audit, secret isolation, corporate memory, and backend adapters. Agents connect to the gateway, authenticate once, and call a small, stable set of public MCP tools — backend credentials never reach the agent. This is the canonical home of the server; the earlier standalone mirror [`comindspace/gateway-mcp`](https://github.com/comindspace/gateway-mcp) is archived (readable, releases up to v0.2.0).
 
 > Status: early public release of a system in daily production use. Skills are written for a Russian business environment first; English packaging is catching up. [Читать по-русски](README.ru.md).
 
@@ -80,7 +80,7 @@ bootstrap.sh       one-command VM installer
 DEPLOY.md          deployment guide (Russian)
 ```
 
-The `gateway/` directory mirrors the standalone `comindspace/gateway-mcp` repository; server-specific docs live there (`gateway/README.md`, `gateway/SECURITY.md`, `gateway/docs/`). Update it with `git subtree pull --prefix gateway <gateway-mcp-remote> main`.
+The `gateway/` directory is the canonical home of the GatewayMCP server; server-specific docs live there (`gateway/README.md`, `gateway/SECURITY.md`, `gateway/docs/`). Maintainers sync it from the internal source repository.
 
 ## Writing your own skills
 
