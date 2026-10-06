@@ -231,6 +231,10 @@ locate_install_dir() {
     script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     if [ -d "${script_dir}/gateway" ] && [ -d "${script_dir}/.git" ]; then
         INSTALL_DIR="$script_dir"
+        if [ -e "${INSTALL_DIR}/gateway/.env" ]; then
+            die "${INSTALL_DIR}: установка уже есть (.env). Повторная установка перезаписала бы секреты
+и отрезала бы шлюз от существующей базы. Диагностика: sudo bash ${INSTALL_DIR}/bootstrap.sh --doctor"
+        fi
         log "Использую репозиторий, из которого запущен скрипт: ${INSTALL_DIR}"
     else
         if [ -e "${INSTALL_DIR}/gateway/.env" ]; then
