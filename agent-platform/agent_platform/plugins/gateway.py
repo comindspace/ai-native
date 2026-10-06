@@ -100,7 +100,7 @@ def write_gateway_plugin(plugin_root: Path, platform_release: str = "") -> None:
             "description": codex_manifest["description"],
             "author": {"name": "coMind", "email": "team@comind.space"},
             "homepage": "https://comind.space",
-            "repository": "https://github.com/comindspace/gateway-mcp",
+            "repository": "https://github.com/comindspace/ai-native",
             "license": "UNLICENSED",
             "keywords": ["cursor", "mcp", "gateway", "agents", "skills"],
             "category": "productivity",
