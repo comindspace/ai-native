@@ -366,7 +366,9 @@ start_stack() {
         ( cd "$GATEWAY_DIR" && docker compose logs --tail=80 gateway ) || true
         die "шлюз не поднялся за 240 секунд — логи выше"
     fi
-    case "$(healthz_check "http://127.0.0.1:8000/healthz")" in
+    local hz=0
+    healthz_check "http://127.0.0.1:8000/healthz" || hz=$?
+    case "$hz" in
         0) info "healthz локально: ok, auth_enabled=true" ;;
         1) die "auth_enabled=false — останавливаюсь. Наружу не публиковать (SECURITY.md)" ;;
         *) die "healthz недоступен" ;;
@@ -446,14 +448,18 @@ doctor() {
         fails=$((fails + 1))
     fi
 
-    case "$(healthz_check "http://127.0.0.1:8000/healthz")" in
+    local hz=0
+    healthz_check "http://127.0.0.1:8000/healthz" || hz=$?
+    case "$hz" in
         0) info "healthz (локально): ok, auth включён" ;;
         1) warn "healthz (локально): auth ВЫКЛЮЧЕН — наружу не публиковать"; fails=$((fails + 1)) ;;
         *) warn "healthz (локально): недоступен (docker compose logs gateway)"; fails=$((fails + 1)) ;;
     esac
 
     if [ -n "$domain" ]; then
-        case "$(healthz_check "https://${domain}/healthz")" in
+        local hzs=0
+        healthz_check "https://${domain}/healthz" || hzs=$?
+        case "$hzs" in
             0) info "healthz (HTTPS ${domain}): ok, auth включён" ;;
             1) warn "healthz (HTTPS): auth выключен"; fails=$((fails + 1)) ;;
             *) warn "healthz (HTTPS ${domain}): недоступен (Caddy, сертификат или DNS)"; fails=$((fails + 1)) ;;
